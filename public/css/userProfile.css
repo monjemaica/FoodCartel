@@ -1,0 +1,272 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+
+:root {
+    --white: #fafafa;
+    --black: #121212;
+    --green: #046A38;
+    --dark: 0, 0, 0;
+    --light: 255, 255, 255;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Cabin', sans-serif;
+} 
+
+a {
+    color: var(--white);
+    text-decoration: none;
+}
+
+body {
+    background: url("../img/food1.jpg");
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--green);
+  }
+  
+  
+  ::selection {
+    background-color: var(--green);
+    color: var(--white);
+  }
+
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--black);
+    z-index: 1000;
+    position: relative;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--white);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+
+}
+
+nav ul li {
+    margin-right: 3rem;
+
+}
+
+nav #reserve-btn {
+    background-color: var(--green);
+    color: var(--white);
+    padding: 10px 20px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 10rem;
+    transition: .2s;
+}
+
+nav #reserve-btn:hover {
+    border-color: var(--white);
+    background-color: transparent;
+    color: var(--white);
+}
+
+nav .logo img {
+    max-width: 100px;
+}
+
+.reservation-form {
+    position: absolute;
+    top: -100%;
+    right: 40px;
+    width: 450px;
+    padding: 3rem;
+    background: rgba(var(--light), .9);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    transition: top .6s ease-out;
+    z-index: 1;
+}
+
+.show-reservation-form {
+    top: 85px;
+}
+
+form label {
+    color: var(--black);
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+form input {
+    width: 100%;
+    display: block;
+    font-size: 14px;
+    padding: 0 10px;
+    background: none;
+    border: 0;
+    border-bottom: 1px solid var(--black);
+    color: var(--black);
+    text-align: center;
+    letter-spacing: .5px;
+}
+
+form input:focus {
+    outline: 0;
+}
+
+form button {
+    background: var(--black);
+    color: var(--white);
+    border: 1px solid transparent;
+    padding: 15px;
+    transition: .2s;
+    width: 100%;
+}
+
+form button:hover {
+    background: var(--green);
+}
+
+@media screen and (max-width: 768px) {
+    nav ul li {
+        margin-right: 2rem;
+    }
+
+    nav #reserve-btn {
+        margin-right: 5rem;
+    }
+
+    .reservation-form {
+        right: 20px;
+        width: 90%;
+    }
+}
+
+
+
+#about {
+    background: rgba(var(--dark), .8);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    padding: 50px 0;
+    color: var(--white);
+  }
+
+  #about span {
+    float: right;
+    margin-right: 40px;
+    font-size: 13px;
+    letter-spacing: .5px;
+  }
+
+  #about span a {
+    border-bottom: 2px solid transparent;
+    transition: .2s;
+  }
+
+  #about span a:hover {
+    border-color: var(--white);
+  }
+  
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -15px;
+  }
+  
+  .col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding: 15px;
+  }
+  
+  .profile-picture img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 100%;
+  }
+  
+  .contact-info h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 0;
+  }
+  
+  .contact-info p {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  #statistic {
+    background: var(--white);
+    padding: 50px 0;
+    height: 60vh;
+  }
+
+  h1 {
+    margin-bottom: 1rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+ 
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: none;
+    font-weight: bold;
+  }
+  
+  .date-column {
+    width: 150px;
+  }
+  
+  .time-column {
+    width: 100px;
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .date-column, .time-column {
+      width: auto;
+    }
+  }
+

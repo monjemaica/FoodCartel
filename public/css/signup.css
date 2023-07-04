@@ -1,0 +1,143 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+
+
+:root {
+    --bg: url("../img/header.jpg");
+    --dark: 0, 0, 0;
+    --light: 255,255,255;
+    --white: #ccc;
+    --blur: 100px;
+    --green: #046A38;
+    --black: #222;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "DM Sans", sans-serif;
+}
+
+body {
+    overflow: hidden;
+}
+
+body,
+html {
+    height: 100%;
+    background: #fafafa;
+
+}
+
+header {
+    background: var(--bg) no-repeat center/cover;
+    width: 100%;
+    height: 30vh;
+    border-bottom: 4px solid var(--green);
+}
+
+#box {
+    background: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 400px;
+    width: 500px;
+    margin-top: 70px;
+}
+
+#box a {
+    text-decoration: none;
+    color: rgba(var(--dark), .8);
+    letter-spacing: 1px;
+    transition: .2s linear;
+    padding-left: 10px;
+}
+
+@keyframes back {
+    0% {
+        padding-left: 10px;
+    }
+    50% {
+        padding-left: 20px;
+    }
+    100% {
+        padding-left: 10px;
+    }
+}
+
+form {
+    background: none;
+    border-radius: 10px;
+    color: var(--white);
+}
+
+form h2 {
+    color: var(--green);
+}
+
+.form-padding {
+    padding: 4rem;
+}
+
+i {
+    color: var(--green);
+}
+
+label {
+    display: block;
+    margin-top: 1rem;
+    color: var(--black);
+}
+
+input {
+    display: block;
+    padding: 10px 15px;
+    width: 100%;
+    background: none;
+    border: 0;
+    border-bottom: 1px solid rgba(var(--dark), .3);
+    color: var(--black);
+    letter-spacing: .5px;
+}
+
+input:focus {
+    border-color: var(--green);
+    outline: none;
+}
+
+::placeholder {
+    opacity: .3;
+}
+
+
+.signup {
+    margin-top: 2rem;
+    width: 100%;
+    background: var(--green);
+    color: var(--white);
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 10px;
+    transition: .2s;
+}
+
+.signup:hover {
+    background: none;
+    color: var(--green);
+    border: 1px solid var(--green);
+}
+
+.loginDiv {
+    width: 100%;
+    background: var(--black);
+    padding: 10px;
+    text-align: center;
+}
+
+.loginDiv a {
+    background: none;
+    border: 0;
+    color: var(--white) !important;
+}
