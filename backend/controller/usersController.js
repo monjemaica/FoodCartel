@@ -17,7 +17,7 @@ exports.updateUser = async (req, res) => {
     const userData = req.body;
 
     if (!userData) {
-      return res.status(400).send("User not found");
+      return res.status(400).send("Record not found");
     }
 
     const updatedUser = await User.updateUserById(id, userData);
@@ -32,10 +32,11 @@ exports.updateUser = async (req, res) => {
 exports.deleteUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const { isDeleted } = req.body;
 
-    if (!isDeleted) {
-      return res.status(400).send("User not found");
+    const checkUser = await User.getUserById(id)
+
+    if (!checkUser) {
+      return res.status(400).send("User is not found");
     }
 
     const updatedUser = await User.deleteUserById(id, {isDeleted:true});

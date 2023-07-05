@@ -52,25 +52,26 @@ const UserModel = mongoose.model("User", UserSchema);
 
 const getUsers = () => UserModel.find();
 
+const getUserById = (id) => UserModel.findById(id);
+
 const getUserByEmail = (email) => UserModel.findOne({ email });
 
 const getUserBySessionToken = (sessionToken) => {
-  UserModel.findOne({
+  return UserModel.findOne({
     "authentication.sessionToken": sessionToken,
   });
 };
 
-const getUserById = (id) => UserModel.findById(id);
 
 const createUser = (values) => {
-  new UserModel(values).save().then((user) => user.toObject);
+  return  new UserModel(values).save().then((user) => user.toObject);
 };
 
 const updateUserById = (id, values) => {
-  UserModel.findByIdAndUpdate(id, values, { new: true });
+  return UserModel.findByIdAndUpdate(id, values, { new: true });
 };
 const deleteUserById = (id, values) => {
-  UserModel.findByIdAndUpdate(id, values, { new: true });
+  return UserModel.findByIdAndUpdate(id, values, { new: true });
 };
 
 // const deleteUserById = (id) => UserModel.findOneAndDelete({ _id: id });
@@ -82,6 +83,6 @@ module.exports = {
   getUserBySessionToken,
   getUserById,
   createUser,
-  deleteUserById,
   updateUserById,
+  deleteUserById
 };
