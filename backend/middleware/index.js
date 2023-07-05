@@ -1,5 +1,6 @@
-const config = require('../config/db');
-const user = require('../models/userModel');
+const config = require("../config/db");
+const user = require("../models/userModel");
+const _ = require("lodash");
 
 exports.isAuthenticated = async (req, res, next) => {
   try {
@@ -11,14 +12,37 @@ exports.isAuthenticated = async (req, res, next) => {
 
     const existingUser = await user.getUserBySessionToken(sessionToken);
 
-    if (existingUser) {
+    if (!existingUser) {
       return res.status(403).send("Unauthenticated user");
     }
+    
+    _.merge(req, { identity: existingUser });
 
-    const data = {...req, identify:existingUser};
-    data;
-    // merge(req, { identify: existingUser });
     return next();
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(400);
+  }
+};
+
+exports.role = async (req, res, next) => {
+  try {
+    const checkRole = _.get(req, "identity.role");
+
+    if (!checkRole) {
+      return res.sendStatus(400);
+    }
+
+    if (
+      checkRole.includes("1301") ||
+      checkRole.includes("1302") ||
+      checkRole.includes("1303")
+    ) {
+      // 1301 - admin, 1302 - customer, 1303 - courier
+      return next();
+    }
+    
+    return res.sendStatus(403);
   } catch (error) {
     console.log(error);
     return res.sendStatus(400);

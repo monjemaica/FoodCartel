@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const router = express.Router();
 
 
 const app = express();
@@ -19,7 +20,11 @@ app.use(
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "backend")));
+app.use(express.static(path.join(__dirname, "../views")));
+app.set('view engine', 'ejs');
+app.get('/', (req,res) => {
+  res.render('index');
+})
 
 const connectDB = async () => {
   try {

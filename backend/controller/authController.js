@@ -56,6 +56,7 @@ exports.register = async (req, res) => {
       city,
       barangay,
       isDeleted,
+      role
     } = req.body;
 
     if (!email || !password || !username) {
@@ -83,6 +84,7 @@ exports.register = async (req, res) => {
         password: helper.authentication(salt, password),
       },
       isDeleted,
+      role
     });
 
     return res.status(200).json(user).end();
