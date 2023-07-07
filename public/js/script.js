@@ -31,8 +31,6 @@ navCloseBtn.addEventListener("click", () => {
   nav.classList.remove("openNav");
 });
 
-
-
 //login
 const loginBtnn = document.getElementById("login-btn");
 const loginDiv = document.getElementById("login");
@@ -45,16 +43,16 @@ function toggleLogin() {
 loginBtnn.addEventListener("click", toggleLogin);
 
 $(document).ready(function () {
-  const loginForm_el = $('#login-form');
+  const loginForm_el = $("#login-form");
   const email_el = $(`#email`);
   const password_el = $(`#password`);
-  
+  const status_msg = $(`.status-message`);
+
   loginForm_el.on("submit", (e) => {
     e.preventDefault();
-    
+
     let email = email_el.val();
     let password = password_el.val();
-
 
     let data = {
       email,
@@ -62,15 +60,27 @@ $(document).ready(function () {
     };
 
     $.ajax({
-      url: '/auth/login',
-      type: 'POST',
-      dataType: 'application/json',
+      type: "POST",
+      url: "/auth/login",
       data: data,
-      success: function(res) {
-        res = JSON.parse(response);
-        console.log(res);
-      }
-});
+      success: function (response, textStatus, xhr) {
+        setTimeout(() => {
+          status_msg.text("Successfully login!");
+          status_msg.removeClass(`text-danger`).addClass(`text-success`);
+
+          if (window.sessionStorage) {
+            sessionStorage.setItem(
+              "user-session",
+              response.authentication.sessionToken
+            );
+          }
+        }, 1000);
+      },
+      error: function (xhr, textStatus) {
+        status_msg.text(xhr.responseText);
+        status_msg.removeClass(`text-success`).addClass(`text-danger`);
+      },
+    });
   });
 });
 //login end

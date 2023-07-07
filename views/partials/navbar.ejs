@@ -1,0 +1,45 @@
+<nav class="nav">
+    <i class="uil uil-bars navOpenBtn"></i>
+    <a href="#" class="logo"><img src="img/logo.jpg"></a>
+
+    <ul class="nav-links">
+        <i class="uil uil-times navCloseBtn"></i>
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">Location</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#menu">Feedback</a></li>
+    </ul>
+
+    <div id="login" style="display:none;">
+        <div class="login-form">
+            <form id="login-form">
+                <div class="email-cn">
+                    <label for="email">
+                        <i class="fa fa-envelope"></i> <b>Email</b>
+                    </label>
+                    <input type="email" placeholder="Enter Email" id="email" name="email" autocomplete="off" required>
+                </div>
+
+                <div class="pass-cn">
+                    <label for="password">
+                        <i class="fa fa-asterisk"></i> <b>Password</b>
+                    </label>
+                    <input type="password" placeholder="Enter Password" id="password" name="password" autocomplete="off"
+                        required>
+                    <span class="status-message text-danger" style="font-size: 12px; font-weight: 600;"></span>
+                </div>
+
+                <button type="submit">Login</button>
+
+                <div class="register">
+                    <label for="signup">Not a member? <b><a href="/auth/register">Sign Up</a></b></label>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <button id="login-btn">Login <i style="font-size:24px" class="fa">&#xf107;</i></button>
+
+    <script src="script.js"></script>
+
+</nav>

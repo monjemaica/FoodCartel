@@ -2,6 +2,8 @@ const User = require("../models/userModel");
 const helper = require("../helper/index");
 const config = require("../config/db");
 
+exports.signupPage = async(req, res) => res.render('signup')
+
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -14,7 +16,7 @@ exports.login = async (req, res) => {
     );
 
     if (!user) {
-      return res.status(400).send("No user found");
+      return res.status(400).send("Invalid login credentials");
     }
 
     const expectedHash = helper.authentication(
@@ -38,7 +40,8 @@ exports.login = async (req, res) => {
       path: "/",
     });
 
-    return res.status(200).json(user).end();
+    res.render('home', {session: "user.authentication.sessionToken"});
+    // return res.status(200).json(user).end();
   } catch (error) {
     console.log(error);
     return res.sendStatus(400);
@@ -56,7 +59,7 @@ exports.register = async (req, res) => {
       city,
       barangay,
       isDeleted,
-      role
+      role,
     } = req.body;
 
     if (!email || !password || !username) {
@@ -84,10 +87,12 @@ exports.register = async (req, res) => {
         password: helper.authentication(salt, password),
       },
       isDeleted,
-      role
+      role,
     });
-
-    return res.status(200).json(user).end();
+    res.status(200).json(user);
+    res.redirect('/')
+    return;
+    // return res.status(200).json(user).end();
   } catch (error) {
     console.log(error);
   }

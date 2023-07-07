@@ -9,6 +9,7 @@
   --black: #1A1A1A;
   --header: url(../img/food2.jpg);
   --two: url(../img/food1.jpg);
+  --img-signup: url("../img/header.jpg");
 }
 
 
@@ -675,3 +676,25 @@ footer {
     width: 50%;
   }
 }
+
+
+/* SIGN UP */
+.sign-up-container{
+  background: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 400px;
+  width: 500px;
+  margin-top: 70px;
+}
+
+.sign-up-container a{
+  text-decoration: none;
+  color: rgba(var(--dark), .8);
+  letter-spacing: 1px;
+  transition: .2s linear;
+  padding-left: 10px;
+}
+/* END SIGN UP */

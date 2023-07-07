@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const router = express.Router();
+const expressLayouts = require('express-ejs-layouts')
 
 
 const app = express();
@@ -20,11 +20,10 @@ app.use(
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "../views")));
+app.use(express.static(path.join(__dirname, "../public")));
+app.use(expressLayouts);
+app.set('layout', './layouts/main');
 app.set('view engine', 'ejs');
-app.get('/', (req,res) => {
-  res.render('index');
-})
 
 const connectDB = async () => {
   try {
