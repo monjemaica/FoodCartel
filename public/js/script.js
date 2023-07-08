@@ -1,54 +1,55 @@
-const navbar = document.querySelector("nav");
-const navMenu = document.querySelector("nav ul");
-const navMenuLink = document.querySelectorAll("nav ul li a");
-
-window.addEventListener("scroll", function () {
-  if (this.scrollY > 20) {
-    nav.classList.add("active");
-  } else {
-    if (!navMenu.classList.contains("active")) {
-      nav.classList.remove("active");
-    }
-  }
-});
-
-window.addEventListener("scroll", function () {
-  const header = document.querySelector("header");
-  header.style.backgroundPositionY = -window.pageYOffset / 2 + "px";
-});
-
-const nav = document.querySelector(".nav"),
-  loginBtn = document.querySelector(".login-btn"),
-  navOpenBtn = document.querySelector(".navOpenBtn"),
-  navCloseBtn = document.querySelector(".navCloseBtn");
-
-navOpenBtn.addEventListener("click", () => {
-  nav.classList.add("openNav");
-  nav.classList.remove("openSearch");
-  loginBtn.classList.replace("uil-times", "uil-search");
-});
-navCloseBtn.addEventListener("click", () => {
-  nav.classList.remove("openNav");
-});
-
-//login
-const loginBtnn = document.getElementById("login-btn");
-const loginDiv = document.getElementById("login");
-
-function toggleLogin() {
-  loginDiv.style.display = loginDiv.style.display === "none" ? "block" : "none";
-  console.log("click");
-}
-
-loginBtnn.addEventListener("click", toggleLogin);
-
 $(document).ready(function () {
+  const navbar = document.querySelector("nav");
+  const navMenu = document.querySelector("nav ul");
+  const navMenuLink = document.querySelectorAll("nav ul li a");
+
+  window.addEventListener("scroll", function () {
+    if (this.scrollY > 20) {
+      nav.classList.add("active");
+    } else {
+      if (!navMenu.classList.contains("active")) {
+        nav.classList.remove("active");
+      }
+    }
+  });
+
+  window.addEventListener("scroll", function () {
+    const header = document.querySelector("header");
+    header.style.backgroundPositionY = -window.pageYOffset / 2 + "px";
+  });
+
+  const nav = document.querySelector(".nav"),
+    loginBtn = document.querySelector(".login-btn"),
+    navOpenBtn = document.querySelector(".navOpenBtn"),
+    navCloseBtn = document.querySelector(".navCloseBtn");
+
+  navOpenBtn.addEventListener("click", () => {
+    nav.classList.add("openNav");
+    nav.classList.remove("openSearch");
+    loginBtn.classList.replace("uil-times", "uil-search");
+  });
+  navCloseBtn.addEventListener("click", () => {
+    nav.classList.remove("openNav");
+  });
+
+  //login
+  const loginBtnn = document.getElementById("login-btn");
+  const loginDiv = document.getElementById("login");
+
+  function toggleLogin() {
+    loginDiv.style.display =
+      loginDiv.style.display === "none" ? "block" : "none";
+    console.log("click");
+  }
+
+  loginBtnn.addEventListener("click", toggleLogin);
+
   const loginForm_el = $("#login-form");
   const email_el = $(`#email`);
   const password_el = $(`#password`);
   const status_msg = $(`.status-message`);
 
-  const login_btn =$("#login-btn");
+  const login_btn = $("#login-btn");
 
   loginForm_el.on("submit", (e) => {
     e.preventDefault();
@@ -69,13 +70,12 @@ $(document).ready(function () {
         setTimeout(() => {
           status_msg.text(response.msg);
           status_msg.removeClass(`text-danger`).addClass(`text-success`);
-          console.log(response)
+          console.log(response);
 
-          if(response.data.role.includes("1302")){ // 1302 - user
-            // login_btn.style.display = "none"
+          if (response.data.role.includes("1302")) {
+            // 1302 - user
             window.location = response.redirect;
           }
-
         }, 1000);
       },
       error: function (xhr, textStatus) {
@@ -84,5 +84,5 @@ $(document).ready(function () {
       },
     });
   });
+  //login end
 });
-//login end

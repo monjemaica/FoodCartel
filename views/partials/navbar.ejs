@@ -17,54 +17,50 @@
           <label for="email">
             <i class="fa fa-envelope"></i> <b>Email</b>
           </label>
-          <input
-            type="email"
-            placeholder="Enter Email"
-            id="email"
-            name="email"
-            autocomplete="off"
-            required
-          />
+          <input type="email" placeholder="Enter Email" id="email" name="email" autocomplete="off" required />
         </div>
 
         <div class="pass-cn">
           <label for="password">
             <i class="fa fa-asterisk"></i> <b>Password</b>
           </label>
-          <input
-            type="password"
-            placeholder="Enter Password"
-            id="password"
-            name="password"
-            autocomplete="off"
-            required
-          />
-          <span
-            class="status-message text-danger"
-            style="font-size: 12px; font-weight: 600"
-          ></span>
+          <input type="password" placeholder="Enter Password" id="password" name="password" autocomplete="off"
+            required />
+          <span class="status-message text-danger" style="font-size: 12px; font-weight: 600"></span>
         </div>
 
         <button type="submit">Login</button>
 
         <div class="register">
-          <label for="signup"
-            >Not a member? <b><a href="/auth/register">Sign Up</a></b></label
-          >
+          <label for="signup">Not a member? <b><a href="/auth/register">Sign Up</a></b></label>
         </div>
       </form>
     </div>
   </div>
 
-  <% if(req.identity !== null) { %> <% if(req.identity.role.includes('1302')) {
-  %>
-  <div class="login-btn">User</div>
-  <%}else { %>
-  <button id="login-btn">
-    Login <i style="font-size: 24px" class="fa">&#xf107;</i>
-  </button>
-  <%} %> <%} %>
-  <!-- <button id="login-btn" style="display: block;">Login <i style="font-size:24px" class="fa">&#xf107;</i></button> -->
+  <!-- logout -->
+  <div id="logout" style="display: none">
+    <div class="login-form">
+      test
+    </div>
+  </div>
+  <!-- logout -->
 
-  <script src="script.js"></script>
+  <% if(typeof req.identity !=="undefined" ) { %>
+
+    <% if(req.identity.role.includes('1302')) { %>
+      <button id="logout_btn" class="navbar_btn" style="display: block;">
+        <%- req.identity.username %>
+          <i style="font-size:24px" class="fa">&#xf107;</i>
+      </button>
+      <%} %>
+
+        <% }else{ %>
+          <button id="login-btn" class="navbar_btn" style="display: block;">Login <i style="font-size:24px"
+              class="fa">&#xf107;</i></button>
+
+          <%} %>
+
+
+            <script src="script.js"></script>
 </nav>

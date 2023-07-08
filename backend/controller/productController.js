@@ -1,6 +1,5 @@
 exports.loginpage = async(req, res) => {
     try {
-
         res.render('login',{req})
     } catch (error) {
         console.log(error);
@@ -10,7 +9,7 @@ exports.loginpage = async(req, res) => {
 
 exports.homepage = async(req, res) => {
     try {
-        console.log(req)
+
         res.render('home',{req})
     } catch (error) {
         console.log(error);
