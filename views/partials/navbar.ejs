@@ -41,7 +41,13 @@
   <!-- logout -->
   <div id="logout" style="display: none">
     <div class="login-form">
-      test
+      <ul>
+        <li>Profile</li>
+        <li>Order List</li>
+        <li>Settings</li>
+        <li>Settings</li>
+        <li>Logout</li>
+      </ul>
     </div>
   </div>
   <!-- logout -->
@@ -49,18 +55,18 @@
   <% if(typeof req.identity !=="undefined" ) { %>
 
     <% if(req.identity.role.includes('1302')) { %>
-      <button id="logout_btn" class="navbar_btn" style="display: block;">
+      <button id="logout-btn" class="navbar_btn" style="display: block;">
         <%- req.identity.username %>
           <i style="font-size:24px" class="fa">&#xf107;</i>
       </button>
       <%} %>
 
-        <% }else{ %>
-          <button id="login-btn" class="navbar_btn" style="display: block;">Login <i style="font-size:24px"
-              class="fa">&#xf107;</i></button>
+<% }else{ %>
+<button id="login-btn" class="navbar_btn" style="display: block;">Login <i style="font-size:24px"
+    class="fa">&#xf107;</i></button>
 
-          <%} %>
+<%} %>
 
 
-            <script src="script.js"></script>
+<script src="script.js"></script>
 </nav>
