@@ -15,7 +15,7 @@ exports.isAuthenticated = async (req, res, next) => {
     if (!existingUser) {
       return res.status(403).send("Unauthenticated user");
     }
-    
+
     _.merge(req, { identity: existingUser });
 
     return next();
@@ -25,7 +25,7 @@ exports.isAuthenticated = async (req, res, next) => {
   }
 };
 
-exports.role = async (req, res, next) => {
+exports.isAdmin = async (req, res, next) => {
   try {
     const checkRole = _.get(req, "identity.role");
 
@@ -41,7 +41,47 @@ exports.role = async (req, res, next) => {
       // 1301 - admin, 1302 - customer, 1303 - courier
       return next();
     }
-    
+
+    return res.sendStatus(403);
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(400);
+  }
+};
+
+exports.isUser = async (req, res, next) => {
+  try {
+    const checkRole = _.get(req, "identity.role");
+    console.log(checkRole);
+    if (!checkRole) {
+      return res.sendStatus(400);
+    }
+
+    if (checkRole.includes("1301")) {
+      // 1301 - admin, 1302 - customer, 1303 - courier
+      return next();
+    }
+
+    return res.sendStatus(403);
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(400);
+  }
+};
+
+exports.isCourier = async (req, res, next) => {
+  try {
+    const checkRole = _.get(req, "identity.role");
+
+    if (!checkRole) {
+      return res.sendStatus(400);
+    }
+
+    if (checkRole.includes("1302")) {
+      // 1301 - admin, 1302 - user, 1303 - courier
+      return next();
+    }
+
     return res.sendStatus(403);
   } catch (error) {
     console.log(error);

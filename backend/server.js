@@ -32,7 +32,7 @@ const connectDB = async () => {
     if (connection) {
       app.listen(config.server.port, () => {
         console.log(`MongoDB Connected: ${connection.connection.host}`);
-        console.log(`Server started on port ${config.server.port}`);
+        console.log(`Server started on port http://localhost:${config.server.port}`);
       });
     }
   } catch (error) {

@@ -38,10 +38,10 @@ exports.login = async (req, res) => {
     res.cookie(config.key.cookie, user.authentication.sessionToken, {
       domain: "localhost",
       path: "/",
-    });
-
-    res.render('home', {session: "user.authentication.sessionToken"});
-    // return res.status(200).json(user).end();
+    }); 
+    
+    res.status(200).json({msg:"Successfully Login", data:user, redirect: "/home"})
+    // res.render('home', {session: "user.authentication.sessionToken"});
   } catch (error) {
     console.log(error);
     return res.sendStatus(400);

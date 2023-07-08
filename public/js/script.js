@@ -48,6 +48,8 @@ $(document).ready(function () {
   const password_el = $(`#password`);
   const status_msg = $(`.status-message`);
 
+  const login_btn =$("#login-btn");
+
   loginForm_el.on("submit", (e) => {
     e.preventDefault();
 
@@ -65,15 +67,15 @@ $(document).ready(function () {
       data: data,
       success: function (response, textStatus, xhr) {
         setTimeout(() => {
-          status_msg.text("Successfully login!");
+          status_msg.text(response.msg);
           status_msg.removeClass(`text-danger`).addClass(`text-success`);
+          console.log(response)
 
-          if (window.sessionStorage) {
-            sessionStorage.setItem(
-              "user-session",
-              response.authentication.sessionToken
-            );
+          if(response.data.role.includes("1302")){ // 1302 - user
+            // login_btn.style.display = "none"
+            window.location = response.redirect;
           }
+
         }, 1000);
       },
       error: function (xhr, textStatus) {

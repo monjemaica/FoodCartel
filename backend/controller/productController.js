@@ -1,3 +1,19 @@
+exports.loginpage = async(req, res) => {
+    try {
+
+        res.render('login',{req})
+    } catch (error) {
+        console.log(error);
+        return res.sendStatus(400);
+    }
+}
+
 exports.homepage = async(req, res) => {
-    res.render('home', {title: 'The Food Cartel'})
+    try {
+        console.log(req)
+        res.render('home',{req})
+    } catch (error) {
+        console.log(error);
+        return res.sendStatus(400);
+    }
 }

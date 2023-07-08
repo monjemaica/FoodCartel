@@ -7,13 +7,14 @@ const router = (app) => {
     //authentication
     const _auth = require('../middleware/index')
 
-    //HOME
-    app.get('/', prod.homepage)
+    //PAGES
+    app.get('/', prod.loginpage)
+    app.get('/home',_auth.isAuthenticated, _auth.isUser, prod.homepage)
 
     //USERS
-    app.get('/users',_auth.isAuthenticated, _auth.role, users.getAllUsers);
-    app.put('/users/:id',_auth.isAuthenticated, _auth.role, users.updateUser);
-    app.delete('/users/:id',_auth.isAuthenticated, _auth.role, users.deleteUser);
+    app.get('/users',_auth.isAuthenticated, _auth.isUser, users.getAllUsers);
+    app.put('/users/:id',_auth.isAuthenticated, _auth.isUser, users.updateUser);
+    app.delete('/users/:id',_auth.isAuthenticated, _auth.isUser, users.deleteUser);
 
     //AUTH
     app.get('/auth/register', auth.signupPage)
