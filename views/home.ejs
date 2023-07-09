@@ -35,7 +35,7 @@
 <!-- ABOUT -->
 
 <section id="menu">
-    <span class="special-menu-text">Special Menu</span>
+    <span class="special-menu-text animate__zoomIn">Special Menu</span>
     <div class="container">
         <div class="menu__top">
             <a href="#" class="link">View More</a>
@@ -46,7 +46,15 @@
                     <li>
                         <div class="img">
                             <img src=<%- food.img %> alt="">
-                            <span class="price">₱<%- food.price.toFixed(2) %></span>
+                            <div class="price">
+                                <a href="">
+                                    <span class="new-label">
+                                        <b>
+                                            ₱<%- food.price.toFixed(2) %>
+                                        </b>
+                                    </span>
+                                </a>
+                            </div>
                         </div>
                         <a href="#" class="title"><%- food.name %></a>
                     </li>
