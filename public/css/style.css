@@ -172,6 +172,26 @@ a {
   background: rgba(var(--light), .2);
 }
 
+.nav .cart_btn{
+  border: none;
+  padding: 5px 20px;
+  color: rgba(var(--light), 1);
+  border-radius: 5px;
+  background: none;
+}
+.nav .cart-badge{
+  background-color: #FF0000;
+  color: #FFFFFF;
+  padding: 0 3px;
+  border-radius: 4px;
+  font-size: 12px;
+  text-align: center;
+  position: fixed;
+  top: 905;
+  right: 25;
+  margin: 0 5px;
+}
+
 .nav .login-form,
 .nav .login-form button {
   border-radius: 5px;
@@ -591,7 +611,7 @@ h2 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: width 100ms;
+  transition: all .1s;
 }
 
 .img:hover img{
@@ -802,3 +822,24 @@ footer {
   }
 }
 /* END LOGOUT */
+
+/* CART */
+#cartitems {
+  position: absolute;
+  top: 85px;
+  right: 0;
+  width: 250px;
+}
+.cartitems-div{
+  /* background: rgba(var(--dark), .5); */
+  background: var(--white);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.cartitems-container{
+  background: var(--grey);
+  height: 100%;
+}

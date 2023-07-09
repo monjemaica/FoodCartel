@@ -43,20 +43,18 @@
         <ul class="menu__list">
             <% if (foods.length !== 0) { %>
                 <% foods.forEach(food => { %>
-                    <li>
+                    <li id="<%- food._id %>" href='javascript:;' class="add-cart">
                         <div class="img">
-                            <img src=<%- food.img %> alt="">
+                            <img id="food-img" src=<%- food.img %> alt="">
                             <div class="price">
-                                <a href="">
+                                <a href="javascript:;">
                                     <span class="new-label">
-                                        <b>
-                                            ₱<%- food.price.toFixed(2) %>
-                                        </b>
+                                        <b id="food-price">₱<%- food.price.toFixed(2) %></b>
                                     </span>
                                 </a>
                             </div>
                         </div>
-                        <a href="#" class="title"><%- food.name %></a>
+                        <a href="#" class="title" id="food-name"><%- food.name %></a>
                     </li>
                 <% }) %>
             <% } %>

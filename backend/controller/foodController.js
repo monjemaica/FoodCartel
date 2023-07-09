@@ -10,6 +10,15 @@ exports.homepage = async (req, res) => {
   }
 };
 
+exports.cartitempage = async (req, res) => {
+  try {
+    res.render("cartitems", { req });
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(400);
+  }
+};
+
 exports.getFoods = async (req, res) => {
   try {
     const foods = await Food.getFoods();

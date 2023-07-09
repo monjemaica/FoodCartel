@@ -50,7 +50,9 @@
         </li>
         <li><a href="#"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Reservations</a>
         </li>
-        <div class="divider"><hr></div>
+        <div class="divider">
+          <hr>
+        </div>
         <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i>Settings</a>
         </li>
         <li><a href="#"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
@@ -59,14 +61,25 @@
     </div>
   </div>
   <!-- logout -->
+  <!-- cartitems -->
+  <!-- <div id="cartitems" >
+    <div class="cartitems-div">
+     test
+    </div>
+  </div> -->
+  <!-- cartitems -->
 
   <% if(typeof req.identity !=="undefined" ) { %>
 
     <% if(req.identity.role.includes('1302')) { %>
-      <button id="logout-btn" class="navbar_btn" style="display: block;">
-        <%- req.identity.username %>
-          <i style="font-size:24px" class="fa">&#xf107;</i>
-      </button>
+      <div style="display: inline-flex;">
+        <button id="logout-btn" class="navbar_btn" style="display: block;">
+          <%- req.identity.username %>
+            <i style="font-size:24px" class="fa">&#xf107;</i>
+        </button>
+        <button class="cart_btn"><i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 1.5rem;"></i> <span
+            id="cart-total" class="cart-badge"></span></button>
+      </div>
       <%} %>
 
         <% }else{ %>
