@@ -2,6 +2,15 @@ const User = require("../models/userModel");
 const helper = require("../helper/index");
 const config = require("../config/db");
 
+exports.loginpage = async(req, res) => {
+  try {
+      res.render('login',{req})
+  } catch (error) {
+      console.log(error);
+      return res.sendStatus(400);
+  }
+}
+
 exports.signupPage = async(req, res) => res.render('signup')
 
 exports.login = async (req, res) => {
@@ -89,10 +98,8 @@ exports.register = async (req, res) => {
       isDeleted,
       role,
     });
-    res.status(200).json(user);
-    res.redirect('/')
-    return;
-    // return res.status(200).json(user).end();
+
+    return res.status(200).json({msg:"Successfully Registered", data:user, redirect:"/"});
   } catch (error) {
     console.log(error);
   }

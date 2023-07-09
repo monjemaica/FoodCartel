@@ -41,48 +41,19 @@
             <a href="#" class="link">View More</a>
         </div>
         <ul class="menu__list">
-            <li>
-                <div class="img">
-                    <img src="img/food1.jpg" alt="">
-                    <span class="price">₱50</span>
-                </div>
-                <a href="#" class="title">Food</a>
-            </li>
-            <li>
-                <div class="img">
-                    <img src="img/food2.jpg" alt="">
-                    <span class="price">₱50</span>
-                </div>
-                <a href="#" class="title">Food</a>
-            </li>
-            <li>
-                <div class="img">
-                    <img src="img/food3.jpg" alt="">
-                    <span class="price">₱50</span>
-                </div>
-                <a href="#" class="title">Food</a>
-            </li>
-            <li>
-                <div class="img">
-                    <img src="img/food4.jpg" alt="">
-                    <span class="price">₱50</span>
-                </div>
-                <a href="#" class="title">Food</a>
-            </li>
-            <li>
-                <div class="img">
-                    <img src="img/food5.jpg" alt="">
-                    <span class="price">₱50</span>
-                </div>
-                <a href="#" class="title">Food</a>
-            </li>
-            <li>
-                <div class="img">
-                    <img src="img/food6.jpg" alt="">
-                    <span class="price">₱50</span>
-                </div>
-                <a href="#" class="title">Food</a>
-            </li>
+            <% if (foods.length !== 0) { %>
+                <% foods.forEach(food => { %>
+                    <li>
+                        <div class="img">
+                            <img src=<%- food.img %> alt="">
+                            <span class="price">₱<%- food.price.toFixed(2) %></span>
+                        </div>
+                        <a href="#" class="title"><%- food.name %></a>
+                    </li>
+                <% }) %>
+            <% } %>
+           
+            
         </ul>
 
     </div>
