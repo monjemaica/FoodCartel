@@ -40,13 +40,21 @@
 
   <!-- logout -->
   <div id="logout" style="display: none">
-    <div class="login-form">
-      <ul>
-        <li>Profile</li>
-        <li>Order List</li>
-        <li>Settings</li>
-        <li>Settings</li>
-        <li>Logout</li>
+    <div class="logout-div">
+      <ul class="logout-dropdown">
+        <li><a href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Profile</a>
+        </li>
+        <li><a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Cart</a>
+        </li>
+        <li><a href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i></i>My Orders</a>
+        </li>
+        <li><a href="#"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Reservations</a>
+        </li>
+        <div class="divider"><hr></div>
+        <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i>Settings</a>
+        </li>
+        <li><a href="#"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -61,12 +69,12 @@
       </button>
       <%} %>
 
-<% }else{ %>
-<button id="login-btn" class="navbar_btn" style="display: block;">Login <i style="font-size:24px"
-    class="fa">&#xf107;</i></button>
+        <% }else{ %>
+          <button id="login-btn" class="navbar_btn" style="display: block;">Login <i style="font-size:24px"
+              class="fa">&#xf107;</i></button>
 
-<%} %>
+          <%} %>
 
 
-<script src="script.js"></script>
+            <script src="script.js"></script>
 </nav>

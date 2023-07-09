@@ -7,6 +7,7 @@
   --white: #fff;
   --green: #046A38;
   --black: #1A1A1A;
+  --grey: #9a9a9a;
   --header: url(../img/food2.jpg);
   --two: url(../img/food1.jpg);
   --img-signup: url("../img/header.jpg");
@@ -85,6 +86,16 @@ body {
   background: #f0faff;
 }
 
+hr{
+  border: 0;
+  border-top: 1px solid var(--grey);
+  opacity: .1
+}
+
+.divider{
+  padding: 5px 5px;
+}
+
 .nav {
   position: fixed;
   top: 0;
@@ -113,7 +124,6 @@ body {
 }
 
 a {
-  color: #fff;
   text-decoration: none;
 }
 
@@ -134,6 +144,7 @@ a {
 
 .nav .nav-links a {
   display: inline-block;
+  color: var(--white);
 }
 
 .nav .nav-links a::after {
@@ -705,6 +716,34 @@ footer {
   right: 200px;
   width: 250px;
   /* margin-right: 20px; */
+}
+
+.nav .logout-div{
+  background: rgba(var(--dark), .5);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.logout-dropdown li{
+  padding: 1rem 0;
+}
+
+.logout-dropdown li > a{
+  color: var(--white);
+  padding: 0 1rem;
+}
+.logout-dropdown li > a > i{
+  padding-right: 10px;
+}
+
+.logout-dropdown li:hover{
+ color: var(--black);
+ background: var(--white);
+}
+.logout-dropdown li:hover a{
+ color: var(--black);
 }
 
 @media (max-width: 767px) {
