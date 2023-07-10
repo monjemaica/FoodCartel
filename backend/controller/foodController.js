@@ -12,7 +12,8 @@ exports.homepage = async (req, res) => {
 
 exports.cartitempage = async (req, res) => {
   try {
-    res.render("cartitems", { req });
+
+    res.render("cartitems", { req, redirect: '/cart' });
   } catch (error) {
     console.log(error);
     return res.sendStatus(400);

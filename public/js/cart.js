@@ -1,4 +1,17 @@
 $(document).ready(function () {
+  const path = window.location.pathname;
+  const navbar = $('#navbar');
+
+  if(path === "/cart"){
+    navbar.addClass(' nav--black');
+  }
+  
+  
+  updateCartTotal();
+
+
+// CLICK EVENTS
+
   $(".add-cart").on("click", function (event) {
     const data = {
       id: this.id,
@@ -31,7 +44,8 @@ $(document).ready(function () {
 });
 
 
-updateCartTotal();
+
+
 
   function updateCartTotal() {
     var cart = localStorage.getItem('cart');

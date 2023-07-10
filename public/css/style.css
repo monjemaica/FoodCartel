@@ -4,7 +4,7 @@
   --light: 255, 255, 255;
   --dark: 0, 0, 0;
   --greenRGB: 4, 106, 56;
-  --white: #fff;
+  --white: #ffffff;
   --green: #046A38;
   --black: #1A1A1A;
   --grey: #9a9a9a;
@@ -102,9 +102,12 @@ hr{
   left: 0;
   width: 100%;
   padding: 30px 200px;
-  background: none;
   z-index: 1000;
   transition: .2s linear;
+}
+
+.nav--black{
+  background: var(--black);
 }
 
 .nav.active {
@@ -601,20 +604,20 @@ h2 {
   margin-bottom: 40px;
 }
 
-.img {
+#menu .img {
   position: relative;
   overflow: hidden;
   height: 220px;
 }
 
-.img img {
+#menu .img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: all .1s;
 }
 
-.img:hover img{
+#menu .img:hover img{
   width: 120%;
 }
 
@@ -675,7 +678,7 @@ h2 {
 
 /* mobile layout */
 @media only screen and (max-width: 768px) {
-  .menu__list li {
+  .menu__list li, .meu {
     width: calc(50% - 20px);
   }
 }
@@ -843,3 +846,98 @@ footer {
   background: var(--grey);
   height: 100%;
 }
+
+
+/* desktop layout */
+#menu-white {
+  padding: 50px 0;
+  color: var(--black);
+  display: grid;
+  grid-template-areas: "menu__container cart-bag" ;
+  grid-template-columns: 1250px 360px;
+  justify-items: center;
+  justify-content: center;
+  margin-top: 5rem;
+}
+
+/* #menu-white::before {
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px); 
+} */
+
+#menu-white .special-menu-text {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-left: 10px;
+}
+
+.menu__container {
+  margin: 0;
+  border: 1px solid red;
+}
+.cart-bag {
+  margin: 0;
+  border: 1px solid red;
+  display: flex;
+}
+.cart-bag .card{
+  background: var(--white);
+  width: 20vw;
+}
+
+#menu-white .menu__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 2rem;
+}
+
+#menu-white .menu__list li {
+  width: calc(33.33% - 20px);
+  margin-bottom: 40px;
+  padding: 0 10px;
+}
+
+#menu-white .img {
+  position: relative;
+  overflow: hidden;
+  height: 220px;
+}
+
+#menu-white .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all .1s;
+}
+
+#menu-white .img:hover img{
+  width: 120%;
+}
+
+.card{
+  padding: 1rem;
+  line-height: 1.5;
+}
+
+.card-header{
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+.card p{
+  font-size: 14px;
+}
+
+.cart-img{
+  max-height: 100px;
+  overflow: hidden;
+
+}
+
+.cart-img img{
+  width: 25%;
+  height: 25%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
