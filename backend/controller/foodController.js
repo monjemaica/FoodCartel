@@ -12,8 +12,8 @@ exports.homepage = async (req, res) => {
 
 exports.cartitempage = async (req, res) => {
   try {
-
-    res.render("cartitems", { req, redirect: '/cart' });
+    const foods = await Food.getFoods();
+    res.render("cartitems", { req, foods, redirect: '/cart' });
   } catch (error) {
     console.log(error);
     return res.sendStatus(400);
