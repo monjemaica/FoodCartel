@@ -95,6 +95,7 @@ hr{
   border: 0;
   border-top: 1px solid var(--grey);
   opacity: .1;
+  margin: 15px 0;
 }
 
 .divider{
@@ -1010,6 +1011,13 @@ footer {
   color: rgba(var(--light), 1);
   transition: .1s linear;
 }
+
+.cart-item-action button{
+  border: 0;
+  color: var(--green);
+  background: none;
+}
+
 
 
 @media (max-width: 767px) {

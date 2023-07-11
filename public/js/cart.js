@@ -64,15 +64,15 @@ $(document).ready(function () {
 
     cartItems.forEach((food) => {
       const itemHtml = `<li key="${food.id}" class="cartitems-list">
-      <img src="img/food6.jpg" alt="" />
+      <img src="${food.img}" alt="" />
       <div class="cart-item-details">
         <span class="item-name">${food.name}</span>
         <p>Price: ₱${food.price}</p>
       </div>
       <div class="cart-item-action">
-        <button>+</button>
+        <button class="plus-btn">-</button>
         <span class="item-price">${food.qty}</span>
-        <button>-</button>
+        <button class="minus-btn">+</button>
       </div>
     </li>`;
 
