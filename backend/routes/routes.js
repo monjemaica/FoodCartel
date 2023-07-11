@@ -25,7 +25,7 @@ const router = (app) => {
   app.post("/foods", _auth.isAuthenticated, _auth.isUser, foods.create)
 
   //CART
-  app.get("/cart", foods.cartitempage)
+  app.get("/cart", _auth.isAuthenticated, _auth.isUser, foods.cartitempage)
 };
 
 module.exports = router;
