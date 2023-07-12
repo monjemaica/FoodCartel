@@ -39,14 +39,13 @@ $(document).ready(function () {
 
       localStorage.setItem("cart", JSON.stringify(newCart));
     }
-    
+
     getCartItems();
     updateCartTotal();
   });
 
   function updateCartTotal() {
-    let cart = localStorage.getItem("cart");
-    let cartItems = cart ? JSON.parse(cart) : [];
+    const cartItems = getCartData();
 
     const totalItems = cartItems.reduce((a, c) => a + c.qty, 0);
 
@@ -56,8 +55,7 @@ $(document).ready(function () {
   }
 
   function getCartItems() {
-    let cart = localStorage.getItem("cart");
-    let cartItems = cart ? JSON.parse(cart) : [];
+    const cartItems = getCartData();
 
     const cartItems_ul = $("#cartitems-group");
     cartItems_ul.empty();
@@ -70,13 +68,43 @@ $(document).ready(function () {
         <p>Price: ₱${food.price}</p>
       </div>
       <div class="cart-item-action">
-        <button class="plus-btn">-</button>
+        <button  class="plus-btn" >-</button>
         <span class="item-price">${food.qty}</span>
-        <button class="minus-btn">+</button>
+        <button onclick="increase('${food.id}', '${food.name}', '${food.qty}', '${food.img}', '${food.price}')" class="minus-btn">+</button>
       </div>
     </li>`;
 
       cartItems_ul.append(itemHtml);
     });
   }
+
+  function getCartData() {
+    let cart = localStorage.getItem("cart");
+    let cartItems = cart ? JSON.parse(cart) : [];
+
+    return cartItems;
+  }
 });
+
+function increase(id, name, qty, img, price) {
+  const data = {
+    id: id,
+    name: name,
+    qty: qty,
+    price: price,
+    img: img,
+  };
+
+  let cart = localStorage.getItem("cart");
+  let cartItems = cart ? JSON.parse(cart) : [];
+
+  let existItem = cartItems.find((item) => item.id === id);
+
+  if (existItem) {
+    existItem.qty++;
+  } else {
+    cartItems.push(data);
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cartItems));
+}
