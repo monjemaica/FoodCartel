@@ -2,15 +2,6 @@ const User = require("../models/userModel");
 const helper = require("../helper/index");
 const config = require("../config/db");
 
-exports.loginpage = async(req, res) => {
-  try {
-      res.render('login',{req})
-  } catch (error) {
-      console.log(error);
-      return res.sendStatus(400);
-  }
-}
-
 exports.signupPage = async(req, res) => res.render('signup')
 
 exports.login = async (req, res) => {
@@ -49,7 +40,7 @@ exports.login = async (req, res) => {
       path: "/",
     }); 
     
-    res.status(200).json({msg:"Successfully Login", data:user, redirect: "/home"})
+    res.status(200).json({msg:"Successfully Login", data:user, redirect: "/foodCartel"})
     // res.render('home', {session: "user.authentication.sessionToken"});
   } catch (error) {
     console.log(error);

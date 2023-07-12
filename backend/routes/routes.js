@@ -7,8 +7,7 @@ const router = (app) => {
   const _auth = require("../middleware/index");
 
   //PAGES
-  app.get("/", auth.loginpage);
-  app.get("/home", _auth.isAuthenticated, _auth.isUser, foods.homepage);
+  app.get("/foodCartel", _auth.isAuthenticated, _auth.isUser, foods.homepage);
 
   //AUTH
   app.get("/auth/register", auth.signupPage);

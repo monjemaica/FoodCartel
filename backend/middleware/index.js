@@ -7,7 +7,7 @@ exports.isAuthenticated = async (req, res, next) => {
     const sessionToken = req.cookies[config.key.cookie];
 
     if (!sessionToken) {
-      return res.status(403).send("Unauthenticated user");
+      return  res.render('login',{req})
     }
 
     const existingUser = await user.getUserBySessionToken(sessionToken);
