@@ -84,6 +84,11 @@ $(document).ready(function () {
 // logout
 $(document).ready(function () {
 
+  $("#logout_list").click(function () {
+    document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+    window.location= '/foodCartel';
+  });
+
   $("#logout-btn").click(function () {
     $("#logout").toggle();
   });
