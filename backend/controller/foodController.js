@@ -10,6 +10,16 @@ exports.homepage = async (req, res) => {
   }
 };
 
+exports.payment = async (req, res) => {
+  try {
+    const foods = await Food.getFoods();
+    res.render("checkout", { req, foods });
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(400);
+  }
+};
+
 exports.cartitempage = async (req, res) => {
   try {
     const foods = await Food.getFoods();

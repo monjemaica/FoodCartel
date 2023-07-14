@@ -25,6 +25,7 @@ const router = (app) => {
 
   //CART
   app.get("/cart", _auth.isAuthenticated, _auth.isUser, foods.cartitempage)
+  app.get("/checkout", _auth.isAuthenticated, _auth.isUser, foods.payment)
 };
 
 module.exports = router;

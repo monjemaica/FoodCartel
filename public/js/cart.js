@@ -3,7 +3,7 @@ const cartItemsData = {
     const path = window.location.pathname;
     const navbar = $("#navbar");
 
-    if (path === "/cart") {
+    if (path === "/cart" || path === "/checkout") {
       navbar.addClass(" nav--black");
     }
 
