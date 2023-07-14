@@ -46,12 +46,10 @@ const cartItemsData = {
   getCartData: () => {
     let cart = localStorage.getItem("cart");
     let cartItems = cart ? JSON.parse(cart) : [];
-  
+
     return cartItems;
-  }
-
+  },
 };
-
 
 function displayCartItems() {
   const cartItems = cartItemsData.getCartData();
@@ -70,6 +68,7 @@ function displayCartItems() {
       <button onclick="decrease('${food.id}', '${food.name}', '${food.qty}', '${food.img}', '${food.price}')"  class="plus-btn" >-</button>
       <span class="item-price">${food.qty}</span>
       <button onclick="increase('${food.id}', '${food.name}', '${food.qty}', '${food.img}', '${food.price}')" class="minus-btn">+</button>
+      <button onclick="remove('${food.id}')" class="minus-btn"><i class="fa fa-trash-o" style="color:red;" aria-hidden="true"></i></button>
     </div>
   </li>`;
 
@@ -81,7 +80,7 @@ function updateCartTotal() {
   const cartItems = cartItemsData.getCartData();
 
   const totalItems = cartItems.reduce((a, c) => a + c.qty, 0);
-  const subtotal = cartItems.reduce((a, {price, qty}) => a + price * qty, 0);
+  const subtotal = cartItems.reduce((a, { price, qty }) => a + price * qty, 0);
 
   if (totalItems === 0) return null;
   if (subtotal === 0) return null;
@@ -111,7 +110,7 @@ function increase(id, name, qty, img, price) {
   }
 
   localStorage.setItem("cart", JSON.stringify(cartItems));
-  cartItemsData.init()
+  cartItemsData.init();
 }
 
 function decrease(id, name, qty, img, price) {
@@ -123,19 +122,32 @@ function decrease(id, name, qty, img, price) {
     img: img,
   };
 
-  let cart = localStorage.getItem("cart");
-  let cartItems = cart ? JSON.parse(cart) : [];
-
-  let existItem = cartItems.find((item) => item.id === id);
-
-  if (existItem) {
-    existItem.qty--;
-  } else {
-    cartItems.push(data);
+  if(data.qty === '1'){
+    remove(data.id);
+  }else{
+    let cartItems = cartItemsData.getCartData()
+  
+    let existItem = cartItems.find((item) => item.id === id);
+  
+    if (existItem) {
+      existItem.qty--;
+    } else {
+      cartItems.push(data);
+    }
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+    cartItemsData.init();
   }
 
-  localStorage.setItem("cart", JSON.stringify(cartItems));
-  cartItemsData.init()
+}
+
+function remove(id) {
+  const cartItems = cartItemsData.getCartData();
+
+  let newItems = cartItems.filter((item) => item.id !== id);
+
+  localStorage.setItem("cart", JSON.stringify(newItems));
+  $("#subtotal").text('');
+  cartItemsData.init();
 }
 
 $(document).ready(function () {
