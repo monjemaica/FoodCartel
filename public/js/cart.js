@@ -80,7 +80,7 @@ function updateCartTotal() {
   const cartItems = cartItemsData.getCartData();
 
   const totalItems = cartItems.reduce((a, c) => a + c.qty, 0);
-  const subtotal = cartItems.reduce((a, { price, qty }) => a + price * qty, 0);
+  const subtotal = cartItems.reduce((a, { price }) => a + price, 0);
 
   if (totalItems === 0) return null;
   if (subtotal === 0) return null;
