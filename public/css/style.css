@@ -105,6 +105,10 @@ nav {
   cursor: pointer;
 }
 
+/* .pd-5{
+  padding: 0 5rem;
+} */
+
 /* Google Fonts - Poppins */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
@@ -991,10 +995,6 @@ footer {
 }
 
 .cartitems-list {
-  /* display: grid;  
-  grid-template-columns: 100px 188px 1fr;
-  grid-template-rows: 65px;
-  align-items: center; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -1052,14 +1052,36 @@ footer {
   display: grid;
   grid-template-areas:
     "reserve_tbl order_summary"
-    "payment order_summary"
+    "reserve_tbl order_summary"
     "payment order_summary";
-  grid-template-columns: 1200px 650px;
-  /* grid-template-rows: 1fr 1fr; */
-  /* justify-items: center;
-  justify-content: center; */
+  grid-template-columns: 1000px 450px;
+  justify-content: center; 
   margin: 5rem 2rem 0 2rem;
   gap: 10px;
+  max-height: 100vh;
+  
+}
+
+@media (max-width: 950px) {
+  #checkout {
+    grid-template-areas:
+    "reserve_tbl"
+    "payment"
+    "order_summary";
+    grid-template-columns: 1fr;
+  }
+
+  .selectdiv, .selectdiv_textarea{
+    float: none !important;
+    min-width: 0;
+  }
+
+  .outline_btn{
+    width: 100%;
+    margin: 1rem;
+    padding: 10px 20px;
+  }
+  
 }
 
 .reserve_tbl {
@@ -1078,8 +1100,7 @@ footer {
   height: 100%;
 }
 
-.selectdiv,
-.selectdiv_textarea {
+.selectdiv, .selectdiv_textarea{
   float: left;
   min-width: 300px;
   margin: 0 5rem;
@@ -1091,11 +1112,7 @@ select::-ms-expand {
   display: none;
 }
 
-.selectdiv_textarea {
-  float: left;
-  min-width: 300px;
-  margin-right: 2rem;
-}
+
 
 .selectdiv select,
 .selectdiv input {
@@ -1139,7 +1156,3 @@ select::-ms-expand {
   word-break: normal;
 }
 
-.paymethod{
-  padding: 0 5rem;
-  /* font-size: 18px; */
-}
