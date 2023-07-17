@@ -1,7 +1,5 @@
-<span class="special-menu-text">Payment</span>
 <section id="checkout">
   <div class="reserve_tbl">
-    
     <div class="card">
       <div>Table Reservation</div>
       <div class="selectdiv">
@@ -17,29 +15,84 @@
       <div class="selectdiv">
         <label for="cars">Date:</label>
 
-       <input type="date" name="" id="">
+        <input type="date" name="" id="" />
       </div>
       <div class="selectdiv">
         <label for="cars">Time:</label>
 
-       <input type="time" name="" id="">
+        <input type="time" name="" id="" />
       </div>
-      <div class="selectdiv">
+      <div class="selectdiv_textarea">
         <label for="cars">Note:</label>
 
-       <textarea name="" id="" cols="30" rows="10"></textarea>
+        <textarea name="" id="" cols="20" rows="3"></textarea>
       </div>
     </div>
   </div>
 
   <div class="payment">
-    <div class="card">Payment Method</div>
+    <div class="card">
+      Payment Method
+      <div class="paymethod">
+        <div class="justifycontent-evenly">
+          <button class="outline_btn">
+            <i
+              class="fa fa-credit-card"
+              aria-hidden="true"
+              style="padding-right: 10px; font-size: 16px"
+            ></i>
+            Credit/ Debit Card
+          </button>
+          <button class="outline_btn">
+            <i
+              class="fa fa-paypal"
+              aria-hidden="true"
+              style="padding-right: 10px; font-size: 16px"
+            ></i>
+            PayPal
+          </button>
+        </div>
+        <div class="selectdiv">
+          <label for="cars"># of Person/s</label>
+  
+          <select name="cars" id="cars">
+            <option value="table1">Table 1</option>
+            <option value="table2">Table 2</option>
+            <option value="table3">Mercedes</option>
+            <option value="table4">Audi</option>
+          </select>
+        </div>
+        <div class="selectdiv">
+          <label for="cars">Date:</label>
+  
+          <input type="date" name="" id="" />
+        </div>
+        <div class="selectdiv">
+          <label for="cars">Time:</label>
+  
+          <input type="time" name="" id="" />
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="order_summary">
     <div class="card">
-      Order Summary
-
+      <div>Order Summary</div>
+      <span class="card-header"> Food Cartel </span>
+      <p><%- req.identity.username %></p>
+      <hr />
+      <ul id="cartitems-group">
+        <hr />
+      </ul>
+      <div class="justifycontent">
+        <p>Subtotal</p>
+        <p id="subtotal"></p>
+      </div>
+      <hr />
+      <button class="checkout-btn" onclick="location.href = '/checkout';">
+        Place Order
+      </button>
     </div>
   </div>
 </section>

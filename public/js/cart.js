@@ -3,8 +3,12 @@ const cartItemsData = {
     const path = window.location.pathname;
     const navbar = $("#navbar");
 
-    if (path === "/cart" || path === "/checkout") {
-      navbar.addClass(" nav--black");
+    if($.cookie("COOKI3-AUTH")){
+      if (path === "/cart" || path === "/checkout") {
+        console.log("test");
+        navbar.addClass(" nav--black");
+        
+      }
     }
 
     displayCartItems();
@@ -49,7 +53,14 @@ const cartItemsData = {
 
     return cartItems;
   },
+  
 };
+
+const getCookie = () => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; COOKI3-AUTH=`);
+  if (parts.length === 2) return parts.pop().split(";").shift();
+}
 
 function displayCartItems() {
   const cartItems = cartItemsData.getCartData();
@@ -82,11 +93,18 @@ function updateCartTotal() {
   const totalItems = cartItems.reduce((a, c) => a + c.qty, 0);
   const subtotal = cartItems.reduce((a, { price }) => a + price, 0);
 
+  const subtotal_div = $("#subtotal");
+  subtotal_div.empty();
+
   if (totalItems === 0) return null;
   if (subtotal === 0) return null;
 
+  const itemHtml = ` <p>Subtotal</p>
+  <p>${subtotal}</p>`;
+
   $("#cart-total").text(totalItems);
-  $("#subtotal").text(subtotal);
+  subtotal_div.append(itemHtml);
+  // $("#subtotal").text(subtotal);
 }
 
 function increase(id, name, qty, img, price) {
@@ -122,13 +140,13 @@ function decrease(id, name, qty, img, price) {
     img: img,
   };
 
-  if(data.qty === '1'){
+  if (data.qty === "1") {
     remove(data.id);
-  }else{
-    let cartItems = cartItemsData.getCartData()
-  
+  } else {
+    let cartItems = cartItemsData.getCartData();
+
     let existItem = cartItems.find((item) => item.id === id);
-  
+
     if (existItem) {
       existItem.qty--;
     } else {
@@ -137,7 +155,6 @@ function decrease(id, name, qty, img, price) {
     localStorage.setItem("cart", JSON.stringify(cartItems));
     cartItemsData.init();
   }
-
 }
 
 function remove(id) {
@@ -146,7 +163,7 @@ function remove(id) {
   let newItems = cartItems.filter((item) => item.id !== id);
 
   localStorage.setItem("cart", JSON.stringify(newItems));
-  $("#subtotal").text('');
+  $("#subtotal").text("");
   cartItemsData.init();
 }
 
