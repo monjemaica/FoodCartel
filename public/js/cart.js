@@ -30,7 +30,7 @@ const cartItemsData = {
 
       if (existItem) {
         existItem.qty++;
-        existItem.price = existItem.price + existItem.price;
+        existItem.price += existItem.price ;
       } else {
         cartItems.push(data);
       }
@@ -89,7 +89,7 @@ function updateCartTotal() {
 
   const totalItems = cartItems.reduce((a, c) => a + c.qty, 0);
   const subtotal = cartItems.reduce((a, { price }) => a + price, 0);
-
+  console.log(subtotal);
   if (totalItems === 0) return null;
   if (subtotal === 0) return null;
 
@@ -108,11 +108,12 @@ function increase(id, name, qty, img, price) {
 
   let cart = localStorage.getItem("cart");
   let cartItems = cart ? JSON.parse(cart) : [];
-
+  
   let existItem = cartItems.find((item) => item.id === id);
-
+  
   if (existItem) {
     existItem.qty++;
+    existItem.price += existItem.price ;
   } else {
     cartItems.push(data);
   }
@@ -139,11 +140,14 @@ function decrease(id, name, qty, img, price) {
 
     if (existItem) {
       existItem.qty--;
+      existItem.price -= existItem.price ;
     } else {
       cartItems.push(data);
     }
     localStorage.setItem("cart", JSON.stringify(cartItems));
-    cartItemsData.init();
+    // cartItemsData.init();
+    displayCartItems();
+    updateCartTotal();
   }
 }
 
