@@ -9,6 +9,7 @@
   --lightgreen: #159c5b;
   --black: #1a1a1a;
   --grey: #9a9a9a;
+  --light-grey: #cccccc;
   --header: url(../img/food2.jpg);
   --two: url(../img/food1.jpg);
   --img-signup: url("../img/header.jpg");
@@ -89,8 +90,13 @@ nav {
   background: none;
   width: 25%;
   font-size: 16px;
+  text-align: center;
 }
 
+.outline_btn.selected{
+  background: var(--green);
+  color: var(--white);
+}
 .icon{
   color:var(--green);
 }
@@ -105,9 +111,9 @@ nav {
   cursor: pointer;
 }
 
-/* .pd-5{
-  padding: 0 5rem;
-} */
+.mt-1{
+  margin: 1.5rem 0;
+}
 
 /* Google Fonts - Poppins */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
@@ -1055,6 +1061,7 @@ footer {
     "reserve_tbl order_summary"
     "payment order_summary";
   grid-template-columns: 1000px 450px;
+  grid-template-rows: 230px 200px 200px;
   justify-content: center; 
   margin: 5rem 2rem 0 2rem;
   gap: 10px;
@@ -1082,6 +1089,12 @@ footer {
     padding: 10px 20px;
   }
   
+}
+
+.header_checkout{
+  font-weight: 500;
+  font-size: 18px;
+  padding: .5rem 0;
 }
 
 .reserve_tbl {
@@ -1145,7 +1158,7 @@ select::-ms-expand {
   width: 100%;
   float: right;
   margin: 5px 0px;
-  padding: 0px 24px;
+  padding: 0px 12px;
   font-size: 16px;
   line-height: 1.75;
   color: #333;
@@ -1154,5 +1167,18 @@ select::-ms-expand {
   border: 1px solid #cccccc;
   -ms-word-break: normal;
   word-break: normal;
+  resize: none;
 }
 
+
+input:invalid {
+  border: 1px solid #ff0303;
+}
+
+input:valid {
+  border: 1px solid #cccccc;
+}
+
+input:empty{
+  border: 1px solid #cccccc;
+}

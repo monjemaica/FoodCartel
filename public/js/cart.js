@@ -10,8 +10,16 @@ const cartItemsData = {
       }
     }
 
+    const paymethod_btn = $(".outline_btn");
+
+    paymethod_btn.on("click", function () {
+      paymethod_btn.removeClass("selected");
+      $(this).addClass("selected");
+    });
+
     displayCartItems();
     updateCartTotal();
+    cartItemsData.validDate();
   },
   addToCart: (e) => {
     const data = {
@@ -30,7 +38,7 @@ const cartItemsData = {
 
       if (existItem) {
         existItem.qty++;
-        existItem.price += existItem.price ;
+        existItem.price += existItem.price;
       } else {
         cartItems.push(data);
       }
@@ -50,6 +58,54 @@ const cartItemsData = {
     let cartItems = cart ? JSON.parse(cart) : [];
 
     return cartItems;
+  },
+  validDate: () => {
+    var maxDate = year + "-" + month + "-" + day;
+    $("#txtDate").attr("min", maxDate);
+
+    var dtToday = new Date();
+
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if (month < 10) month = "0" + month.toString();
+    if (day < 10) day = "0" + day.toString();
+
+    var maxDate = year + "-" + month + "-" + day;
+
+    $("#date").attr("min", maxDate);
+  },
+  submitForm: (e) => {
+    e.preventDefault();
+    const userId = $(`#user-id`).val();
+    const reservation_table_number = $(`#tables`).val();
+    const reservation_date = $(`#date`).val();
+    const reservation_time = $(`#time`).val();
+    const reservation_note = $(`#note`).val();
+    const order_items = cartItemsData.getCartData();
+    const order_total_amount = order_items.reduce(
+      (a, { price }) => a + price,
+      0
+    );
+    const order_total_qty = order_items.reduce((a, c) => a + c.qty, 0);
+
+    const data = {
+      userId,
+      reservation: 
+        {
+          reservation_table_number,
+          reservation_date,
+          reservation_time,
+          reservation_note,
+        }
+      ,
+      order_items,
+      order_total_amount,
+      order_total_qty,
+      order_status: "Pending",
+    };
+    
+    console.log(data);
   },
 };
 
@@ -94,7 +150,7 @@ function updateCartTotal() {
   if (subtotal === 0) return null;
 
   $("#cart-total").text(totalItems);
-  $("#subtotal").text("₱"+(subtotal).toFixed(2));
+  $("#subtotal").text("₱" + subtotal.toFixed(2));
 }
 
 function increase(id, name, qty, img, price) {
@@ -108,12 +164,12 @@ function increase(id, name, qty, img, price) {
 
   let cart = localStorage.getItem("cart");
   let cartItems = cart ? JSON.parse(cart) : [];
-  
+
   let existItem = cartItems.find((item) => item.id === id);
-  
+
   if (existItem) {
     existItem.qty++;
-    existItem.price += existItem.price ;
+    existItem.price += existItem.price;
   } else {
     cartItems.push(data);
   }
@@ -140,7 +196,7 @@ function decrease(id, name, qty, img, price) {
 
     if (existItem) {
       existItem.qty--;
-      existItem.price -= existItem.price ;
+      existItem.price -= existItem.price;
     } else {
       cartItems.push(data);
     }
@@ -161,7 +217,16 @@ function remove(id) {
   cartItemsData.init();
 }
 
+function payCredit() {
+  console.log("credit");
+}
+
+function payPal() {
+  console.log("paypal");
+}
+
 $(document).ready(function () {
   cartItemsData.init();
   $(".add-cart").on("click", (e) => cartItemsData.addToCart(e));
+  $("#payment-form").on("submit", (e) => cartItemsData.submitForm(e));
 });
