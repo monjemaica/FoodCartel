@@ -2,6 +2,7 @@ const router = (app) => {
   const users = require("../controller/usersController");
   const auth = require("../controller/authController");
   const foods = require("../controller/foodController");
+  const orders = require("../controller/orderController");
 
   //authentication
   const _auth = require("../middleware/index");
@@ -26,6 +27,12 @@ const router = (app) => {
   //CART
   app.get("/cart", _auth.isAuthenticated, _auth.isUser, foods.cartitempage)
   app.get("/checkout", _auth.isAuthenticated, _auth.isUser, foods.payment)
+
+  //ORDER
+  app.get("/orders", orders.getOrders);
+  app.get("/orders/:user_id", orders.getUserOrders);
+  app.post("/orders", orders.create);
+  app.put("/orders/:id", orders.update);
 };
 
 module.exports = router;

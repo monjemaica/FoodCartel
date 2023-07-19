@@ -59,6 +59,12 @@ const cartItemsData = {
 
     return cartItems;
   },
+  clearCartData: () => {
+    localStorage.setItem("cart", []);
+    $("#cart-total").text("");
+    $("#subtotal").text("");
+    cartItemsData.init();
+  },
   validDate: () => {
     var maxDate = year + "-" + month + "-" + day;
     $("#txtDate").attr("min", maxDate);
@@ -75,37 +81,48 @@ const cartItemsData = {
 
     $("#date").attr("min", maxDate);
   },
-  submitForm: (e) => {
+  placeOrder: (e) => {
     e.preventDefault();
-    const userId = $(`#user-id`).val();
-    const reservation_table_number = $(`#tables`).val();
-    const reservation_date = $(`#date`).val();
-    const reservation_time = $(`#time`).val();
-    const reservation_note = $(`#note`).val();
-    const order_items = cartItemsData.getCartData();
-    const order_total_amount = order_items.reduce(
-      (a, { price }) => a + price,
-      0
-    );
-    const order_total_qty = order_items.reduce((a, c) => a + c.qty, 0);
-
-    const data = {
-      userId,
-      reservation: 
-        {
-          reservation_table_number,
-          reservation_date,
-          reservation_time,
-          reservation_note,
-        }
-      ,
-      order_items,
-      order_total_amount,
-      order_total_qty,
-      order_status: "Pending",
-    };
+    const user_id = $(`#user-id`).val();
+    const table_number = $(`#tables`).val();
+    const date = $(`#date`).val();
+    const time = $(`#time`).val();
+    const note = $(`#note`).val();
+    const items = cartItemsData.getCartData();
     
-    console.log(data);
+    const total_amount = items.reduce( (a, { price }) => a + price, 0);
+    const total_qty = items.reduce((a, c) => a + c.qty, 0);
+
+    const reservation = {
+      user_id,
+      table_number,
+      date,
+      time,
+      note,
+    }
+  
+    const orders = {
+      user_id,
+      items,
+      total_amount,
+      total_qty,
+      status: "Pending",
+    };
+
+    $.ajax({
+      type: "POST",
+      url: "/orders",
+      data: orders,
+      success: function (response, textStatus, xhr) {
+        setTimeout(() => {
+          console.log(response);
+        }, 1000);
+      }
+    });
+    
+    console.log(reservation);
+    console.log(orders);
+    cartItemsData.clearCartData();
   },
 };
 
@@ -228,5 +245,5 @@ function payPal() {
 $(document).ready(function () {
   cartItemsData.init();
   $(".add-cart").on("click", (e) => cartItemsData.addToCart(e));
-  $("#payment-form").on("submit", (e) => cartItemsData.submitForm(e));
+  $("#payment-form").on("submit", (e) => cartItemsData.placeOrder(e));
 });
