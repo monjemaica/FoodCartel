@@ -123,6 +123,7 @@ const cartItemsData = {
     console.log(reservation);
     console.log(orders);
     cartItemsData.clearCartData();
+    $("#payment-form")[0].reset();
   },
 };
 
