@@ -43,7 +43,7 @@
         <ul class="menu__list">
             <% if (foods.length !== 0) { %>
                 <% foods.forEach(food => { %>
-                    <li id="<%- food._id %>" href='javascript:;' class="add-cart">
+                    <li id="<%- food._id %>" href='javascript:;' class="add-cart" data-id="<%- food._id %>" data-name="<%- food.name %>" data-price="<%- food.price.toFixed(2) %>" data-img="<%- food.img %>" data-qty="<%- food.qty %>">
                         <div class="img">
                             <img id="food-img" src=<%- food.img %> alt="">
                             <div class="price">

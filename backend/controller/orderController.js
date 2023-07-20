@@ -21,7 +21,7 @@ exports.getOrders = async (req, res) => {
     try {
        const orders = await Order.getOrders();
 
-       return res.status(200).json(orders);
+       res.render("orders", {req, orders})
     } catch (error) {
         console.log(error);
         return;

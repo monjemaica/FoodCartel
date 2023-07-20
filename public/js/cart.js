@@ -4,7 +4,7 @@ const cartItemsData = {
     const navbar = $("#navbar");
 
     if ($.cookie("COOKI3-AUTH")) {
-      if (path === "/cart" || path === "/checkout") {
+      if (path === "/cart" || path === "/checkout" || path === '/orders') {
         console.log("test");
         navbar.addClass(" nav--black");
       }
