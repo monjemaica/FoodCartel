@@ -1,4 +1,5 @@
 const Order = require("../models/orderModel");
+const moment = require("moment");
 
 exports.create = async (req, res) => {
     try {
@@ -20,8 +21,8 @@ exports.create = async (req, res) => {
 exports.getOrders = async (req, res) => {
     try {
        const orders = await Order.getOrders();
-
-       res.render("orders", {req, orders})
+        console.log(orders);
+       res.render("orders", {req, orders, moment})
     } catch (error) {
         console.log(error);
         return;

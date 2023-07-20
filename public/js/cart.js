@@ -61,8 +61,8 @@ const cartItemsData = {
   },
   clearCartData: () => {
     localStorage.setItem("cart", []);
-    $("#cart-total").text("");
     $("#subtotal").text("");
+    $("#cart-total").text("");
     cartItemsData.init();
   },
   validDate: () => {
@@ -232,6 +232,7 @@ function remove(id) {
 
   localStorage.setItem("cart", JSON.stringify(newItems));
   $("#subtotal").text("");
+  $("#cart-total").text("");
   cartItemsData.init();
 }
 
