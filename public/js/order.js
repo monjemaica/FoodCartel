@@ -14,7 +14,15 @@ const orderList = {
     });
   },
   viewOrder: (e) => {
-    console.log('click', $(e.currentTarget).attr("data-id"));
+    const user_id = $(e.currentTarget).attr("data-id");
+    const items = $(e.currentTarget).attr("data-items");
+
+    items.forEach(or => {
+      console.log(or);
+
+    })
+
+    
   }
 };
 

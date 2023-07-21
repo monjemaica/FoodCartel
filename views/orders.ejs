@@ -15,7 +15,16 @@
           </thead>
           <tbody>
             <% orders.forEach(order => { %>
-            <tr id="<%- order._id %>" class="view-order" data-id="<%- order._id %>">
+            <tr
+              id="<%- order._id %>"
+              class="view-order"
+              data-id="<%- order._id %>"
+              data-data="<%- order.total_qty %>"
+              data-amount="<%- order.total_amount %>"
+              data-status="<%- order.status %>"
+              data-date="<%- moment(order.date_created).format('Do MMMM, YYYY') %>"
+              data-items="<%- JSON.stringify(order.items) %>"
+            >
               <td><%- order.total_qty %> items</td>
               <td><%- order.total_amount %></td>
               <td>Paypal</td>
@@ -23,6 +32,7 @@
               <td><%- moment(order.date_created).format('Do MMMM, YYYY') %></td>
             </tr>
             <% }); %>
+          </tbody>
         </table>
       </div>
     </div>
@@ -32,6 +42,19 @@
     <div class="card">
       <div class="card_header">Order Summary</div>
       <hr style="margin: 15px 0" />
+      <ul id="cartitems-group">
+        <li key="${food.id}" class="cartitems-list">
+          <img src="${food.img}" alt="" />
+          <div class="cart-item-details">
+            <span class="item-name">${food.name}</span>
+            <p id="totalPrice">Price: ₱${food.price}</p>
+          </div>
+          <div class="cart-item-action">
+            <span class="item-price">${food.qty}</span>
+          </div>
+        </li>
+        <hr style="margin: 15px 0;"/>
+      </ul>
     </div>
   </div>
 </section>
