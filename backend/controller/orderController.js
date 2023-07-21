@@ -38,7 +38,7 @@ exports.getUserOrders= async (req, res) => {
 
        const orders = await Order.getOrderByUserId(req.params);
 
-       return res.status(200).json(orders); 
+       res.render("orders", {req, orders, moment})
 
     } catch (error) {
         console.log(error);

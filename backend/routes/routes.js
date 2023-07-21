@@ -29,7 +29,7 @@ const router = (app) => {
   app.get("/checkout", _auth.isAuthenticated, _auth.isUser, foods.payment)
 
   //ORDER
-  app.get("/orders", orders.getOrders);
+  // app.get("/orders", orders.getOrders);
   app.get("/orders/:user_id", orders.getUserOrders);
   app.post("/orders", orders.create);
   app.put("/orders/:id", orders.update);

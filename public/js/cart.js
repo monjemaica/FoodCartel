@@ -4,9 +4,9 @@ const cartItemsData = {
     const navbar = $("#navbar");
 
     if ($.cookie("COOKI3-AUTH")) {
-      if (path === "/cart" || path === "/checkout" || path === '/orders') {
+      if (path === "/foodCartel") {
         console.log("test");
-        navbar.addClass(" nav--black");
+        navbar.removeClass(" nav--black");
       }
     }
 
