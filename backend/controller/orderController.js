@@ -2,64 +2,87 @@ const Order = require("../models/orderModel");
 const moment = require("moment");
 
 exports.create = async (req, res) => {
-    try {
-        const {user_id, items, total_amount, total_qty, status} = req.body;
+  try {
+    const { user_id, items, total_amount, total_qty, status } = req.body;
 
-        if(!req.body){
-            return res.status(400).send("No data found");
-        }
-
-        const order = await Order.createOrder({user_id, items, total_amount, total_qty, status});
-
-        res.status(200).json({msg:"Successfully Order Created", data:order, redirect:"/"});
-    } catch (error) {
-        console.log(error);
-        return;
+    if (!req.body) {
+      return res.status(400).send("No data found");
     }
-}
+
+    const order = await Order.createOrder({
+      user_id,
+      items,
+      total_amount,
+      total_qty,
+      status,
+    });
+
+    res
+      .status(200)
+      .json({ msg: "Successfully Order Created", data: order, redirect: "/" });
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+};
 
 exports.getOrders = async (req, res) => {
-    try {
-       const orders = await Order.getOrders();
-        console.log(orders);
-       res.render("orders", {req, orders, moment})
-    } catch (error) {
-        console.log(error);
-        return;
+  try {
+    const orders = await Order.getOrders();
+
+    res.render("orders", { req, orders, moment });
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+};
+
+exports.getOrderById = async (req, res) => {
+  try {
+
+    if (!req.params) {
+        return res.status(400).send("No params found")
     }
-}
 
-exports.getUserOrders= async (req, res) => {
-    try {
+    const orders = await Order.getOrderById(req.params);
 
-        if(!req.params){
-            return res.status(400).send("No params found");
-        }
+    return res.status(200).json(orders);
 
-       const orders = await Order.getOrderByUserId(req.params);
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+};
 
-       res.render("orders", {req, orders, moment})
-
-    } catch (error) {
-        console.log(error);
-        return;
+exports.getUserOrders = async (req, res) => {
+  try {
+    if (!req.params) {
+      return res.status(400).send("No params found");
     }
-}
 
-exports.update = async (req,res) => {
-    try {
-        const {id} = req.params;
-        const orderData= req.body;
+    const orders = await Order.getOrderByUserId(req.params);
 
-        if(!orderData){
-            return res.status(400).send("Record not found");
-        }
+    res.render("orders", { req, orders, moment });
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+};
 
-        const updateOrder = await Order.updateOrderStatus(id, orderData);
+exports.update = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const orderData = req.body;
 
-        return res.status(200).json(updateOrder);
-    } catch (error) {
-        console.log(error)
-        return;
+    if (!orderData) {
+      return res.status(400).send("Record not found");
     }
-}
+
+    const updateOrder = await Order.updateOrderStatus(id, orderData);
+
+    return res.status(200).json(updateOrder);
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+};

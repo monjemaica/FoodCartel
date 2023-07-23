@@ -2,13 +2,7 @@
   <i class="uil uil-bars navOpenBtn"></i>
   <a href="#" class="logo"><img src="../img/logo.jpg" /></a>
 
-  <ul class="nav-links">
-    <i class="uil uil-times navCloseBtn"></i>
-    <li><a href="#">Home</a></li>
-    <li><a href="#about">Location</a></li>
-    <li><a href="#menu">Menu</a></li>
-    <li><a href="#menu">Feedback</a></li>
-  </ul>
+
 
   <div id="login" style="display: none">
     <div class="login-form">
@@ -38,13 +32,26 @@
     </div>
   </div>
 
-  <!-- logout -->
+
+
+  <% if(typeof req.identity !=="undefined" ) { %>
+
+    <% if(req.identity.role.includes('1302')) { %>
+
+      <ul class="nav-links">
+        <i class="uil uil-times navCloseBtn"></i>
+        <li><a href="/foodCartel">Home</a></li>
+        <li><a href="/foodCartel#about">Location</a></li>
+        <li><a href="/foodCartel#menu">Menu</a></li>
+        <li><a href="/foodCartel#menu">Feedback</a></li>
+      </ul>
+        <!-- logout -->
   <div id="logout" style="display: none">
     <div class="logout-div">
       <ul class="logout-dropdown">
         <li><a href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Profile</a>
         </li>
-        <li><a href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i></i>My Orders</a>
+        <li href="/orders/<%- req.identity._id %>"><a href="/orders/<%- req.identity._id %>"><i class="fa fa-shopping-bag" aria-hidden="true"></i></i>My Orders</a>
         </li>
         <li><a href="#"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Reservations</a>
         </li>
@@ -59,10 +66,7 @@
     </div>
   </div>
   <!-- logout -->
-
-  <% if(typeof req.identity !=="undefined" ) { %>
-
-    <% if(req.identity.role.includes('1302')) { %>
+  
       <div style="display: inline-flex;">
         <button id="logout-btn" class="navbar_btn" style="display: block;">
           <%- req.identity.username %>
@@ -74,6 +78,13 @@
       <%} %>
 
         <% }else{ %>
+          <ul class="nav-links">
+            <i class="uil uil-times navCloseBtn"></i>
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">Location</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#menu">Feedback</a></li>
+          </ul>
           <button id="login-btn" class="navbar_btn" style="display: block;">Login <i style="font-size:24px; padding-left: 10px"
               class="fa">&#xf107;</i></button>
 

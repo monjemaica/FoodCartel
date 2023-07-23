@@ -5,9 +5,9 @@
   --light: 255, 255, 255;
   --dark: 0, 0, 0;
   --greenRGB: 4, 106, 56;
-  --light-greenRGB: 	144, 238, 144;
+  --light-greenRGB: 144, 238, 144;
   --white: #ffffff;
-  --dirty-white: #f0faff;;
+  --dirty-white: #f0faff;
   --green: #046a38;
   --lightgreen: #159c5b;
   --black: #1a1a1a;
@@ -84,11 +84,10 @@ nav {
   justify-content: space-evenly;
 }
 
-
 .outline_btn {
   border: 1px solid var(--green);
   padding: 15px 25px;
-  color:var(--dark);
+  color: var(--dark);
   border-radius: 5px;
   background: none;
   width: 25%;
@@ -96,29 +95,28 @@ nav {
   text-align: center;
 }
 
-.outline_btn.selected{
+.outline_btn.selected {
   background: var(--green);
   color: var(--white);
 }
-.icon{
-  color:var(--green);
+.icon {
+  color: var(--green);
 }
 
-.outline_btn:hover{
+.outline_btn:hover {
   background: var(--green);
   color: var(--white);
 }
 
-.outline_btn:hover, .icon{
+.outline_btn:hover,
+.icon {
   color: var(--white);
   cursor: pointer;
 }
 
-.mt-1{
+.mt-1 {
   margin: 1.5rem 0;
 }
-
-
 
 hr {
   border: 0;
@@ -176,11 +174,16 @@ a {
   column-gap: 80px;
   list-style: none;
   letter-spacing: 1px;
+  padding: 0;
 }
 
 .nav .nav-links a {
   display: inline-block;
   color: var(--white);
+  margin: 0px;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .nav .nav-links a::after {
@@ -797,12 +800,16 @@ footer {
 }
 
 .logout-dropdown li {
-  padding: 1rem 0;
+  padding: 0;
 }
 
 .logout-dropdown li > a {
   color: var(--white);
-  padding: 0 1rem;
+  padding: 1rem;
+  margin: 0px;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 .logout-dropdown li > a > i {
   padding-right: 10px;
@@ -986,7 +993,7 @@ footer {
   font-size: 14px;
 }
 
-.cartitems-group {
+.cartitems-group, .orderitems-group {
   max-height: 50%;
 }
 
@@ -1006,7 +1013,10 @@ footer {
 }
 
 .cart-item-details {
-  width: 60%;
+  width: 65%;
+}
+.item-price{
+  width: 65%;
 }
 
 .checkout-btn {
@@ -1021,6 +1031,7 @@ footer {
 .checkout-btn:hover {
   background: var(--lightgreen);
 }
+
 
 .cart-item-action button {
   border: 0;
@@ -1052,33 +1063,32 @@ footer {
     "payment order_summary";
   grid-template-columns: 1000px 450px;
   grid-template-rows: 230px 200px 200px;
-  justify-content: center; 
+  justify-content: center;
   margin: 5rem 2rem 0 2rem;
   gap: 10px;
   max-height: 100vh;
-  
 }
 
 @media (max-width: 950px) {
   #checkout {
     grid-template-areas:
-    "reserve_tbl"
-    "payment"
-    "order_summary";
+      "reserve_tbl"
+      "payment"
+      "order_summary";
     grid-template-columns: 1fr;
   }
 
-  .selectdiv, .selectdiv_textarea{
+  .selectdiv,
+  .selectdiv_textarea {
     float: none !important;
     min-width: 0;
   }
 
-  .outline_btn{
+  .outline_btn {
     width: 100%;
     margin: 1rem;
     padding: 10px 20px;
   }
-  
 }
 
 .reserve_tbl {
@@ -1097,13 +1107,14 @@ footer {
   height: 100%;
 }
 
-.card_header{
+.card_header {
   font-weight: 500;
   font-size: 20px;
-  padding: .5rem 0;
+  padding: 0.5rem 0;
 }
 
-.selectdiv, .selectdiv_textarea{
+.selectdiv,
+.selectdiv_textarea {
   float: left;
   min-width: 300px;
   margin: 0 5rem;
@@ -1114,8 +1125,6 @@ footer {
 select::-ms-expand {
   display: none;
 }
-
-
 
 .selectdiv select,
 .selectdiv input {
@@ -1159,7 +1168,6 @@ select::-ms-expand {
   resize: none;
 }
 
-
 input:invalid {
   border: 1px solid #ff0303;
 }
@@ -1168,96 +1176,94 @@ input:valid {
   border: 1px solid #cccccc;
 }
 
-input:empty{
+input:empty {
   border: 1px solid #cccccc;
 }
 
-
 /* ORDER LIST */
-#order_list{
+#order_list {
   padding: 50px 0;
   color: var(--black);
   display: grid;
-  grid-template-areas:
-    "order_tbl order_details";
+  grid-template-areas: "order_tbl order_details";
   grid-template-columns: 1000px 450px;
   grid-template-rows: 1fr;
-  justify-content: center; 
+  justify-content: center;
   margin: 5rem 2rem 0 2rem;
   gap: 10px;
   max-height: 100vh;
-  
 }
 
-
 @media (max-width: 950px) {
-  #order_list{
+  #order_list {
     grid-template-areas:
-    "order_tbl"
-    "order_tbl"
-    "order_details";
+      "order_tbl"
+      "order_tbl"
+      "order_details";
     grid-template-columns: 1fr;
   }
 
-  .selectdiv, .selectdiv_textarea{
+  .selectdiv,
+  .selectdiv_textarea {
     float: none !important;
     min-width: 0;
   }
 
-  .outline_btn{
+  .outline_btn {
     width: 100%;
     margin: 1rem;
     padding: 10px 20px;
   }
-  
 }
 
-.order_tbl{
+.order_tbl {
   height: 650px;
 }
 
-
-#order-datatable tbody tr td{
+#order-datatable tbody tr td {
   border: none;
   box-shadow: none;
   font-weight: 500;
-  padding: 1rem .5rem;
+  padding: 1rem 0.5rem;
 }
 
-
-#order-datatable tbody tr:hover{
-  background: rgba(var(--light-greenRGB), .5);
+#order-datatable tbody tr:hover {
+  background: rgba(var(--light-greenRGB), 0.5);
 }
 
-.dataTables_info, #order-datatable_filter{
-  color: var(--grey) !important;  
+.dataTables_info,
+#order-datatable_filter {
+  color: var(--grey) !important;
 }
 
-#order-datatable_paginate span a.paginate_button.current,#order-datatable_paginate span a.paginate_button.current:hover{
+#order-datatable_paginate span a.paginate_button.current,
+#order-datatable_paginate span a.paginate_button.current:hover {
   border: none !important;
   color: var(--dirty-white) !important;
   background-color: var(--lightgreen) !important;
   cursor: default;
 }
 
-#order-datatable_paginate span a.paginate_button:hover, #order-datatable_next:hover, #order-datatable_previous:hover {
+#order-datatable_paginate span a.paginate_button:hover,
+#order-datatable_next:hover,
+#order-datatable_previous:hover {
   color: var(--lightgreen) !important;
-  background-color: rgba(var(--light-greenRGB), .5) !important;
+  background-color: rgba(var(--light-greenRGB), 0.5) !important;
   background: none;
   border: none !important;
 }
 
-
-.dataTables_wrapper .dataTables_filter input{
+.dataTables_wrapper .dataTables_filter input {
   background-color: #ffffff;
   border: 1px solid #cccccc;
 }
-
-
 
 .dataTables_wrapper .dataTables_paginate .paginate_button {
   padding: 0.5em 0.9em !important;
 }
 
-
-
+#total_amont{
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--lightgreen);
+}

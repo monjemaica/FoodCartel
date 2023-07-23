@@ -30,7 +30,8 @@ const router = (app) => {
 
   //ORDER
   // app.get("/orders", orders.getOrders);
-  app.get("/orders/:user_id", orders.getUserOrders);
+  app.get("/orders/:user_id", _auth.isAuthenticated, _auth.isUser, orders.getUserOrders);
+  app.get("/order/:_id", orders.getOrderById);
   app.post("/orders", orders.create);
   app.put("/orders/:id", orders.update);
 };

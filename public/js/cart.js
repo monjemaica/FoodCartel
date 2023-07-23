@@ -5,7 +5,10 @@ const cartItemsData = {
 
     if ($.cookie("COOKI3-AUTH")) {
       if (path === "/foodCartel") {
-        console.log("test");
+        navbar.removeClass(" nav--black");
+      }
+    }else{
+      if (path === "/foodCartel") {
         navbar.removeClass(" nav--black");
       }
     }
