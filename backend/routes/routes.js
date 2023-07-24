@@ -3,6 +3,7 @@ const router = (app) => {
   const auth = require("../controller/authController");
   const foods = require("../controller/foodController");
   const orders = require("../controller/orderController");
+  const reservations = require("../controller/reservController");
 
   //authentication
   const _auth = require("../middleware/index");
@@ -34,6 +35,9 @@ const router = (app) => {
   app.get("/order/:_id", orders.getOrderById);
   app.post("/orders", orders.create);
   app.put("/orders/:id", orders.update);
+
+  //RESERVATIONS
+  app.post("/reservations", reservations.create);
 };
 
 module.exports = router;
