@@ -1229,6 +1229,7 @@ input:empty {
 
 #order-datatable tbody tr:hover {
   background: rgba(var(--light-greenRGB), 0.5);
+  cursor: pointer;
 }
 
 .dataTables_info,

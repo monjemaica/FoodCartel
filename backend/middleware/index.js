@@ -13,7 +13,7 @@ exports.isAuthenticated = async (req, res, next) => {
     const existingUser = await user.getUserBySessionToken(sessionToken);
 
     if (!existingUser) {
-      return res.status(403).send("Unauthenticated user");
+      res.clearCookie(config.key.cookie);
     }
 
     _.merge(req, { identity: existingUser });
