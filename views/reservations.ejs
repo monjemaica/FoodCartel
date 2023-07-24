@@ -1,0 +1,38 @@
+<section id="reservation_list">
+  <div class="reservation_tbl">
+    <div class="card">
+      <div class="card_header">Order List</div>
+      <div>
+        <table id="order-datatable" class="display" style="width: 100%">
+          <thead>
+            <tr>
+              <th>Table No.</th>
+              <th># of Guest</th>
+              <th>Notes</th>
+              <th>Time</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- <tr id="" class="view-order">
+                  <td>items</td>
+                  <td>test</td>
+                  <td>test</td>
+                  <td>test</td>
+                  <td>test</td>
+                </tr> -->
+            <% reserv.forEach(reserve=> { %>
+            <tr id="<%- reserve._id %>">
+              <td><%- reserve.table_number%></td>
+              <td><%- reserve.guests%></td>
+              <td><%- reserve.note %></td>
+              <td><%- reserve.time %></td>
+              <td><%- reserve.date %></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

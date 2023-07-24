@@ -32,12 +32,13 @@ const router = (app) => {
   //ORDER
   // app.get("/orders", orders.getOrders);
   app.get("/orders/:user_id", _auth.isAuthenticated, _auth.isUser, orders.getUserOrders);
-  app.get("/order/:_id", orders.getOrderById);
-  app.post("/orders", orders.create);
-  app.put("/orders/:id", orders.update);
+  app.get("/order/:_id", _auth.isAuthenticated, _auth.isUser, orders.getOrderById);
+  app.post("/orders", _auth.isAuthenticated, _auth.isUser, orders.create);
+  app.put("/orders/:id", _auth.isAuthenticated, _auth.isUser, orders.update);
 
   //RESERVATIONS
   app.post("/reservations", reservations.create);
+  app.get("/reservations/:user_id", _auth.isAuthenticated, _auth.isUser, reservations.getUserReservations);
 };
 
 module.exports = router;

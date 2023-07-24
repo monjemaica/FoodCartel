@@ -1272,3 +1272,15 @@ input:empty {
   font-weight: 500;
   color: var(--lightgreen);
 }
+
+/* RESERVATIONS */
+
+#reservation_list{
+  padding: 50px 0;
+  color: var(--black);
+  margin: 5rem 2rem 0 2rem;
+}
+
+.reservation_tbl{
+  height: 650px;
+}

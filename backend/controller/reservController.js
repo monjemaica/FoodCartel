@@ -4,7 +4,7 @@ const moment = require('moment');
 
 exports.create = async(req, res) => {
     try {
-        const {user_id, table_number, date, time, note} = req.body;
+        const {user_id, table_number, guests, date, time, note} = req.body;
 
         if(!req.body){
             return res.status(400).send("No data found");
@@ -13,6 +13,7 @@ exports.create = async(req, res) => {
         const reserv = await Reserv.createReserv({
             user_id,
             table_number,
+            guests,
             date,
             time, 
             note
@@ -29,7 +30,7 @@ exports.getReservations = async(req, res) => {
     try {
         const reservations = await Reserv.getReservations();
 
-        res.render("reservations", {req, reservations, moment});
+        return res.send(200).json(reservations);
     } catch (error) {
         console.log(error)
         return;
@@ -52,7 +53,7 @@ exports.getReservById = async(req, res) => {
 }
 
 
-exports.getReservByUserId = async(req,res) => {
+exports.getUserReservations = async(req,res) => {
     try {
         if (!req.params) {
             res.send(400).send("No params found");
@@ -60,8 +61,7 @@ exports.getReservByUserId = async(req,res) => {
 
         const reserv = await Reserv.getReservByUserId(req.params);
 
-        return res.send(200).json(reserv);
-
+        res.render("reservations", {req, reserv, moment});
     } catch (error) {
         console.log(error)
         return

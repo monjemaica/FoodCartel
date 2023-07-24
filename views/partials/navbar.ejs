@@ -51,9 +51,9 @@
       <ul class="logout-dropdown">
         <li><a href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Profile</a>
         </li>
-        <li href="/orders/<%- req.identity._id %>"><a href="/orders/<%- req.identity._id %>"><i class="fa fa-shopping-bag" aria-hidden="true"></i></i>My Orders</a>
+        <li><a href="/orders/<%- req.identity._id %>"><i class="fa fa-shopping-bag" aria-hidden="true"></i></i>My Orders</a>
         </li>
-        <li><a href="#"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Reservations</a>
+        <li><a href="/reservations/<%- req.identity._id %>"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Reservations</a>
         </li>
         <div class="divider">
           <hr>
