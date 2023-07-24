@@ -109,7 +109,7 @@ const cartItemsData = {
       items,
       total_amount,
       total_qty,
-      status: "Pending",
+      status: "Order Received",
     };
 
     $.ajax({

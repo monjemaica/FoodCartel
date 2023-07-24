@@ -9,10 +9,18 @@
   --white: #ffffff;
   --dirty-white: #f0faff;
   --green: #046a38;
-  --lightgreen: #159c5b;
   --black: #1a1a1a;
   --grey: #9a9a9a;
   --light-grey: #cccccc;
+
+  --orange: #FFC000;
+  --lightgreen: #159c5b;
+  --skyblue: #87CEEB;
+  --lightblue: #87CEFA;
+  --pink: #FF69B4;
+  --lightsalmon: #FFA07A;
+  --red: 	#DC143C;
+
   --header: url(../img/food2.jpg);
   --two: url(../img/food1.jpg);
   --img-signup: url("../img/header.jpg");
@@ -68,6 +76,41 @@ nav {
 
 .center{
   text-align: center;
+}
+
+.badge{
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+.badge--orange{
+ background: var(--orange);
+}
+
+.badge--skyblue{
+ background: var(--skyblue);
+}
+
+.badge--lightblue{
+ background: var(--lightblue);
+}
+
+.badge--pink{
+ background: var(--pink);
+}
+
+.badge--lightsalmon{
+ background: var(--lightsalmon);
+}
+
+.badge--green{
+ background: var(--lightgreen);
+ color: var(--dirty-white);
+}
+
+.badge--outline{
+  border: 1px solid var(--red);
+  color: var(--red);
 }
 
 .container {

@@ -20,7 +20,33 @@
                 <td><%- order.total_qty %> items</td>
                 <td><%- order.total_amount %></td>
                 <td>Paypal</td>
-                <td><%- order.status %></td>
+                <td>
+                  <% if (order.status === "Order Received") { %>
+                  <span class="badge badge--orange">
+                    <%- order.status %>
+                  </span>
+                  <% }else if(order.status === "Preparing"){ %>
+                    <span class="badge badge--skyblue">
+                      <%- order.status %>
+                    </span>
+                  <% }else if(order.status === "Cooking"){ %>
+                    <span class="badge badge--lightblue">
+                      <%- order.status %>
+                    </span>
+                  <% }else if(order.status === "Ready to Serve"){ %>
+                    <span class="badge badge--lightsalmon">
+                      <%- order.status %>
+                    </span>
+                  <% }else if(order.status === "Food is Served"){ %>
+                    <span class="badge badge--green">
+                      <%- order.status %>
+                    </span>
+                    <% } else{%>
+                      <span class="badge badge--outline">
+                        <%- order.status %>
+                      </span>
+                    <% } %>
+              </td>
                 <td><%- moment(order.date_created).format('Do MMMM, YYYY') %></td>
               </tr>
               <% }); %>
