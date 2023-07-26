@@ -23,8 +23,9 @@ const cartItemsData = {
     displayCartItems();
     updateCartTotal();
     cartItemsData.validDate();
+    toggleDisabledbtn();
   },
-  addToCart: (e) => {
+  addToCart: (e) => {     
     const data = {
       id: $(e.currentTarget).attr("data-id"),
       name: $(e.currentTarget).attr("data-name"),
@@ -55,6 +56,7 @@ const cartItemsData = {
 
     displayCartItems();
     updateCartTotal();
+    toggleDisabledbtn();
   },
   getCartData: () => {
     let cart = localStorage.getItem("cart");
@@ -88,6 +90,7 @@ const cartItemsData = {
     e.preventDefault();
     const user_id = $(`#user-id`).val();
     const table_number = $(`#tables`).val();
+    const guests = $(`#guests`).val();
     const date = $(`#date`).val();
     const time = $(`#time`).val();
     const note = $(`#note`).val();
@@ -99,6 +102,7 @@ const cartItemsData = {
     const reservation = {
       user_id,
       table_number,
+      guests,
       date,
       time,
       note,
@@ -122,9 +126,20 @@ const cartItemsData = {
         }, 1000);
       }
     });
+
+    $.ajax({
+      type: "POST",
+      url: "/reservations",
+      data: reservation,
+      success: function (response, textStatus, xhr) {
+        setTimeout(() => {
+          console.log(response);
+          window.location = `/reservations/${user_id}`;
+        }, 1000);
+      }
+    });
     
-    console.log(reservation);
-    console.log(orders);
+    
     cartItemsData.clearCartData();
     $("#payment-form")[0].reset();
   },
@@ -222,7 +237,7 @@ function decrease(id, name, qty, img, price) {
       cartItems.push(data);
     }
     localStorage.setItem("cart", JSON.stringify(cartItems));
-    // cartItemsData.init();
+
     displayCartItems();
     updateCartTotal();
   }
@@ -237,6 +252,7 @@ function remove(id) {
   $("#subtotal").text("");
   $("#cart-total").text("");
   cartItemsData.init();
+  toggleDisabledbtn();
 }
 
 function payCredit() {
@@ -245,6 +261,16 @@ function payCredit() {
 
 function payPal() {
   console.log("paypal");
+}
+
+function toggleDisabledbtn(){
+  const cart = cartItemsData.getCartData();
+
+  if(cart.length > 0){
+    $("#checkout-btn").removeAttr('disabled');
+  }else{
+    $("#checkout-btn").prop("disabled", true);
+  }
 }
 
 $(document).ready(function () {
