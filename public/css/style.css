@@ -83,6 +83,11 @@ nav {
   border-radius: 10px;
 }
 
+.badge--sm{
+  font-size: 12px;
+  margin-left: 5px;
+}
+
 .badge--orange{
  background: var(--orange);
 }
@@ -1315,6 +1320,7 @@ input:empty {
   font-weight: 500;
   color: var(--lightgreen);
 }
+
 
 /* RESERVATIONS */
 

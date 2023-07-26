@@ -23,22 +23,39 @@ const orderList = {
         setTimeout(() => {
           const order = response;
           console.log(order);
-          // $("#order_id").text(`Order ${order._id}`);
-          // $("#order_date").text(`Placed on ${date}`);
-          // $("#total_amont").text("₱" +order.total_amount.toFixed(2));
-          // $("#order_items").text('Items:');
-          // $("#total").text('Total Amount: ');
+          const order_span = $("#order_badge");
           const cartItems_ul = $("#orderitems-group");
           const order_div = $("#order_info");
           const total_div = $("#total_details");
 
+          order_span.empty();
           order_div.empty();
           cartItems_ul.empty();
           total_div.empty();
 
+          if (order.status === "Order Received") {
+            order_span.attr('class', 'badge badge--orange badge--sm')
+            order_span.text(order.status)
+          }else if(order.status === "Preparing"){
+            order_span.attr('class', 'badge badge--skyblue badge--sm')
+            order_span.text(order.status)
+          }else if(order.status === "Cooking"){
+            order_span.attr('class', 'badge badge--lightblue badge--sm')
+            order_span.text(order.status)
+          }else if(order.status === "Ready to Serve"){
+            order_span.attr('class', 'badge badge--lightsalmon badge--sm')
+            order_span.text(order.status)
+          }else if(order.status === "Food is Served"){
+            order_span.attr('class', 'badge badge--green badge--sm')
+            order_span.text(order.status)
+          } else {
+            order_span.attr('class', 'badge badge--outline badge--sm')
+            order_span.text(order.status)
+          }
+
           order_div.append(
-            ` <p id="order_id">Order ${order._id}</p> 
-            <p id="order_date">Placed on ${date}</p>
+            ` <p id="order_id" style="font-size: 12px;">Order ${order._id}</p> 
+            <p id="order_date" style="font-size: 12px;">Placed on ${date}</p>
             <hr style="margin: 15px 0" />`
           );
 
