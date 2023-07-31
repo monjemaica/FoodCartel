@@ -57,8 +57,8 @@ exports.isUser = async (req, res, next) => {
       return res.sendStatus(400);
     }
 
-    if (checkRole.includes("1301")) {
-      // 1301 - admin, 1302 - customer, 1303 - courier
+    if (checkRole.includes("1302")) {
+      // 1301 - admin, 1302 - user, 1303 - courier
       return next();
     }
 
