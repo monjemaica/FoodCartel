@@ -69,6 +69,9 @@ $(document).ready(function () {
           if (response.data.role.includes("1302")) {
             // 1302 - user
             window.location = response.redirect;
+          }else{
+            status_msg.text("User is not authenticated");
+            status_msg.removeClass(`text-success`).addClass(`text-danger`);
           }
         }, 1000);
       },

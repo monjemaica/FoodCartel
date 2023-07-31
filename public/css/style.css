@@ -78,6 +78,14 @@ nav {
   text-align: center;
 }
 
+.text-success{
+  color: var(--green);
+}
+
+.text-danger{
+  color: var(--red);
+}
+
 .badge{
   padding: 5px 10px;
   border-radius: 10px;
