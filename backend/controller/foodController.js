@@ -33,7 +33,7 @@ exports.cartitempage = async (req, res) => {
 exports.getFoods = async (req, res) => {
   try {
     const foods = await Food.getFoods();
-
+    console.log(foods);
     return res.status(200).json(foods);
   } catch (error) {
     console.log(error);
@@ -45,7 +45,7 @@ exports.create = async (req, res) => {
   try {
     const { name, stocks, price, img, isDeleted } = req.body;
 
-    if (!req.body) {
+    if (!req.body || !req.file) {
       return res.status(400).send("No Data Found");
     }
 
@@ -54,7 +54,7 @@ exports.create = async (req, res) => {
       return res.status(400).send("Food already exists");
     }
 
-    const food = await Food.createFood({ name, stocks, price, img, isDeleted });
+    const food = await Food.createFood({ name, stocks, price, img:req.file.path, isDeleted });
 
     res
       .status(200)

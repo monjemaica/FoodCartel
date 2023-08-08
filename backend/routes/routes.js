@@ -1,12 +1,17 @@
+
 const router = (app) => {
   const users = require("../controller/usersController");
   const auth = require("../controller/authController");
   const foods = require("../controller/foodController");
   const orders = require("../controller/orderController");
   const reservations = require("../controller/reservController");
-
+  
   //authentication
   const _auth = require("../middleware/index");
+
+  //uploads
+  const mutler = require('multer');
+  const upload = mutler({dest: 'uploads/'});
 
   //PAGES
   app.get("/foodCartel", _auth.isAuthenticated, _auth.isUser, foods.homepage);
@@ -39,6 +44,18 @@ const router = (app) => {
   //RESERVATIONS
   app.post("/reservations", reservations.create);
   app.get("/reservations/:user_id", _auth.isAuthenticated, _auth.isUser, reservations.getUserReservations);
+
+
+  /********************************************************ADMIN********************************************************/
+  //USERS
+  app.get("/admin/users", _auth.isAuthenticated, _auth.isAdmin, users.getAllUsers);
+  app.put("/admin/users/:id", _auth.isAuthenticated, _auth.isAdmin, users.updateUser);
+  app.delete( "/admin/users/:id", _auth.isAuthenticated, _auth.isAdmin, users.deleteUser);
+
+  //FOODS
+  app.get("/admin/foods", _auth.isAuthenticated, _auth.isAdmin, foods.getFoods)
+  app.post("/admin/foods", _auth.isAuthenticated, _auth.isAdmin,upload.single('img'), foods.create)
+
 };
 
 module.exports = router;

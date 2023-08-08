@@ -7,13 +7,13 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const expressLayouts = require('express-ejs-layouts')
 
-
 const app = express();
 
 // Middleweares
 app.use(
   cors({
-    credentials: true,
+    origin: true,
+    credentials: true
   })
 );
 
