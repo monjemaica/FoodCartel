@@ -25,6 +25,8 @@ app.use(expressLayouts);
 app.set('layout', './layouts/main');
 app.set('view engine', 'ejs');
 
+app.use('/uploads', express.static('uploads'));
+
 const connectDB = async () => {
   try {
     const connection = await mongoose.connect(config.mongodb.url);
