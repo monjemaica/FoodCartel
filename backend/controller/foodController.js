@@ -55,10 +55,10 @@ exports.create = async (req, res) => {
     }
 
     const food = await Food.createFood({ name, stocks, price, img:req.file.path, isDeleted });
-
+    
     res
       .status(200)
-      .json({ msg: "Successfully Food Created", data: food, redirect: "/" });
+      .json({ msg: "Successfully Food Created", data: food });
     return;
   } catch (error) {
     console.log(error);

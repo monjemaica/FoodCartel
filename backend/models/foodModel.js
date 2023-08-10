@@ -32,7 +32,7 @@ const getFoodById = (id) => FoodModel.findById(id);
 const getFoodByName = (name) => FoodModel.findOne({ name });
 
 const createFood = (values) => {
-  return  new FoodModel(values).save().then((food) => food.toObject);
+  return  new FoodModel(values).save().then((food) => food);
 };
 
 const updateFoodById = (id, values) => {

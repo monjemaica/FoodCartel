@@ -64,7 +64,6 @@ $(document).ready(function () {
         setTimeout(() => {
           status_msg.text(response.msg);
           status_msg.removeClass(`text-danger`).addClass(`text-success`);
-          console.log(response);
 
           if (response.data.role.includes("1302")) {
             // 1302 - user

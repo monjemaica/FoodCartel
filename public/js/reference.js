@@ -47,8 +47,6 @@ function isNumber(evt) {
       prices.push(parseFloat(subtotal));
     });
   
-    console.log(prices);
-  
     let sum = prices.reduce((partialSum, a) => partialSum + a, 0);
   
     $("#total").html(numberWithCommas(sum.toFixed(2)));
@@ -302,7 +300,6 @@ function isNumber(evt) {
   
       let price = parseInt($(`#price-${id}`).html().substring(1));
   
-      console.log(isNaN(parseFloat(qty)));
   
       if (isNaN(parseFloat(qty)) == false) {
         $(e.currentTarget)

@@ -22,7 +22,6 @@ const orderList = {
       success: function (response, textStatus, xhr) {
         setTimeout(() => {
           const order = response;
-          console.log(order);
           const order_span = $("#order_badge");
           const cartItems_ul = $("#orderitems-group");
           const order_div = $("#order_info");
