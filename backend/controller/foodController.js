@@ -43,7 +43,7 @@ exports.getFoods = async (req, res) => {
 
 exports.create = async (req, res) => {
   try {
-    const { name, stocks, price, img, isDeleted } = req.body;
+    const { name, stocks, price, img, isDeleted, status } = req.body;
 
     if (!req.body || !req.file) {
       return res.status(400).send("No Data Found");
@@ -54,7 +54,7 @@ exports.create = async (req, res) => {
       return res.status(400).send("Food already exists");
     }
 
-    const food = await Food.createFood({ name, stocks, price, img:req.file.path, isDeleted });
+    const food = await Food.createFood({ name, stocks, price, img:req.file.path, isDeleted, status });
     
     res
       .status(200)

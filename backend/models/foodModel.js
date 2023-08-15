@@ -20,6 +20,10 @@ const FoodSchema = new mongoose.Schema({
     isDeleted: {
         type: Boolean,
         default: false,
+    },
+    status: {
+        type: Boolean,
+        default: false,
     }
 });
 
