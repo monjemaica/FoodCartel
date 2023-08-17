@@ -55,6 +55,7 @@ const router = (app) => {
   //FOODS
   app.get("/admin/foods", _auth.isAuthenticated, _auth.isAdmin, foods.getFoods)
   app.post("/admin/foods", _auth.isAuthenticated, _auth.isAdmin,upload.single('img'), foods.create)
+  app.put("/admin/foods/:id", _auth.isAuthenticated, _auth.isAdmin,upload.single('img'), foods.update)
 
 };
 

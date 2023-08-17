@@ -45,7 +45,7 @@ exports.create = async (req, res) => {
   try {
     const { name, stocks, price, img, isDeleted, status } = req.body;
 
-    if (!req.body || !req.file) {
+    if (!req.body) {
       return res.status(400).send("No Data Found");
     }
 
@@ -54,7 +54,7 @@ exports.create = async (req, res) => {
       return res.status(400).send("Food already exists");
     }
 
-    const food = await Food.createFood({ name, stocks, price, img:req.file.path, isDeleted, status });
+    const food = await Food.createFood({ name, stocks, price, img:req.file?.path, isDeleted, status });
     
     res
       .status(200)
@@ -65,3 +65,22 @@ exports.create = async (req, res) => {
     return;
   }
 };
+
+exports.update = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, stocks, price, img, isDeleted, status } = req.body;
+
+
+    if(!req.body){
+      return res.status(400).send("Record not found");
+    }
+
+    const updateFood = await Food.updateFoodById(id, { name, stocks, price, img:req.file?.path, isDeleted, status });
+
+    return res.status(200).json(updateFood);
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+}

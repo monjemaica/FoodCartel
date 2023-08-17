@@ -52,7 +52,7 @@ exports.isAdmin = async (req, res, next) => {
 exports.isUser = async (req, res, next) => {
   try {
     const checkRole = _.get(req, "identity.role");
-    console.log(checkRole);
+    
     if (!checkRole) {
       return res.sendStatus(400);
     }

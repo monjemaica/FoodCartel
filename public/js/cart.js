@@ -133,7 +133,6 @@ const cartItemsData = {
       data: reservation,
       success: function (response, textStatus, xhr) {
         setTimeout(() => {
-          console.log(response);
           window.location = `/reservations/${user_id}`;
         }, 1000);
       }
@@ -181,7 +180,6 @@ function updateCartTotal() {
 
   const totalItems = cartItems.reduce((a, c) => a + c.qty, 0);
   const subtotal = cartItems.reduce((a, { price }) => a + price, 0);
-  console.log(subtotal);
   if (totalItems === 0) return null;
   if (subtotal === 0) return null;
 
