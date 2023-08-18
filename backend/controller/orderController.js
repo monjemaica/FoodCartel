@@ -30,7 +30,20 @@ exports.getOrders = async (req, res) => {
   try {
     const orders = await Order.getOrders();
 
-    res.render("orders", { req, orders, moment });
+    // res.render("orders", { req, orders, moment });
+    return res.status(200).json(orders);
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+};
+exports.getOrder = async (req, res) => {
+  try {
+    const {id} = req.params;
+    const orders = await Order.getOrder(id);
+
+    
+    return res.status(200).json(orders);
   } catch (error) {
     console.log(error);
     return;

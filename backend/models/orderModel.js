@@ -29,7 +29,23 @@ const OrderSchema = new mongoose.Schema({
 
 const OrderModel = mongoose.model("Order", OrderSchema);
 
-const getOrders = () => OrderModel.find();
+const getOrders = () => OrderModel.find().sort({date_created:-1});
+
+const getOrder = (id) => OrderModel.aggregate([
+    {
+        $match:{
+            id
+        }
+    },
+    {
+        $lookup:{
+            from:"Users",
+            localField: "user_id",
+            foreignField: "_id",
+            as: "order_details"
+        }
+    }
+])
 
 const getOrderById = (id) => OrderModel.findById(id);
 
@@ -50,6 +66,7 @@ const updateOrderStatus = (id, values) => {
 
 module.exports ={
     getOrders,
+    getOrder,
     getOrderById,
     getOrderByUserId,
     getPendingOrders,

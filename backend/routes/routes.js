@@ -35,7 +35,6 @@ const router = (app) => {
   app.get("/checkout", _auth.isAuthenticated, _auth.isUser, foods.payment)
 
   //ORDER
-  // app.get("/orders", orders.getOrders);
   app.get("/orders/:user_id", _auth.isAuthenticated, _auth.isUser, orders.getUserOrders);
   app.get("/order/:_id", _auth.isAuthenticated, _auth.isUser, orders.getOrderById);
   app.post("/orders", _auth.isAuthenticated, _auth.isUser, orders.create);
@@ -49,6 +48,7 @@ const router = (app) => {
   /********************************************************ADMIN********************************************************/
   //USERS
   app.get("/admin/users", _auth.isAuthenticated, _auth.isAdmin, users.getAllUsers);
+  app.get("/admin/users/:id", _auth.isAuthenticated, _auth.isAdmin, users.getUsers);
   app.put("/admin/users/:id", _auth.isAuthenticated, _auth.isAdmin, users.updateUser);
   app.delete( "/admin/users/:id", _auth.isAuthenticated, _auth.isAdmin, users.deleteUser);
 
@@ -57,6 +57,9 @@ const router = (app) => {
   app.post("/admin/foods", _auth.isAuthenticated, _auth.isAdmin,upload.single('img'), foods.create)
   app.put("/admin/foods/:id", _auth.isAuthenticated, _auth.isAdmin,upload.single('img'), foods.update)
 
+  //Orders
+  app.get("/admin/orders", orders.getOrders);
+  app.get("/admin/orders/:id", orders.getOrder);
 };
 
 module.exports = router;

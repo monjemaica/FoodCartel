@@ -11,6 +11,23 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
+exports.getUsers = async (req, res) => {
+  try {
+    const {id} = req.params;
+    if(!id){
+      return res.status(400).send("User ID not found");
+    }
+
+    const user = await User.getUserById(id);
+
+    return res.status(200).json(user);
+
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+}
+
 exports.updateUser = async (req, res) => {
   try {
     const { id } = req.params;
